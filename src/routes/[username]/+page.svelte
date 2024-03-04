@@ -1,7 +1,7 @@
 <script lang="ts">
   import UserLink from "$lib/components/UserLink.svelte";
   import { user } from "$lib/firebase";
-    import type { PageData } from "./$types";
+  import type { PageData } from "./$types";
 
     export let data: PageData;
 </script>

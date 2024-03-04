@@ -3,7 +3,7 @@
     import { user, userData, auth } from "$lib/firebase";
     import { signOut } from "firebase/auth";
     import Header from "$lib/components/Header.svelte";
-
+    import type { PageData } from "./$types";
 
     $user;
     $userData;

@@ -1,10 +1,10 @@
 <script lang="ts">
   import ThemeChanger from "./ThemeChanger.svelte";
   import LanguageDropdown from "./LanguageDropdown.svelte";
-  import { user } from "$lib/firebase";
+  import { user, userData } from "$lib/firebase";
 
+  $: u_data = $userData;
   export let logout = () => {};
-
 </script>
 
 <div class="navbar bg-base-300">
@@ -29,7 +29,7 @@
         class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
       >
         <li><a href="#projects" class="duration-200">Projects</a></li>
-        <li><a href="/skid" class="">Links</a></li>
+        <li><a href="/skid" class="">Nicolas's links</a></li>
 
       </ul>
     </div>
@@ -40,7 +40,19 @@
       <li>
         <a class="duration-200 font-semibold" href="/#projects">Projects</a>
       </li>
-      <li><a class="font-semibold" href="/skid">Links</a></li>
+      <li><a class="font-semibold" href="/skid">Nicolas's links</a></li>
+      {#if $user}
+        
+      <li>
+        <details>
+          <summary class="font-semibold">Edit</summary>
+          <ul class="p-2">
+            <li><a href="/{u_data?.username}/bio" class="font-semibold">Bio</a></li>
+            <li><a href="/{u_data?.username}/edit" class="font-semibold">Links</a></li>
+          </ul>
+        </details>
+      </li>
+      {/if}
     </ul>
   </div>
   <div class="navbar-end gap-4">
