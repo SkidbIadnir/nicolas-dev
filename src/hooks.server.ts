@@ -3,10 +3,12 @@ import { adminAuth } from "$lib/server/admin";
 import { getCookie } from "$lib/utils/cookies";
 
 export const handle = async ({ event, resolve }) => {
-    const theme = event.cookies.get("theme");
+    let theme = event.cookies.get("theme");
     const sessionCookie = event.cookies.get("__session");
   
     if (!theme || !themes.includes(theme)) {
+      console.log("no theme found, setting to default");
+      theme = "light";
       return await resolve(event);
     }
 
