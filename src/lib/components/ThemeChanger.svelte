@@ -4,11 +4,7 @@
     import { onMount } from "svelte";
   
     let current_theme = "";
-  
-    onMount(() => {
-      current_theme = getCookie("theme") || "winter";
-    });
-  
+    
     function set_theme(event: Event) {
       const select = event.target as HTMLSelectElement;
       const theme = select.value;

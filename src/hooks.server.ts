@@ -1,5 +1,6 @@
 import { themes } from "$lib/themes";
 import { adminAuth } from "$lib/server/admin";
+import { getCookie } from "$lib/utils/cookies";
 
 export const handle = async ({ event, resolve }) => {
     const theme = event.cookies.get("theme");

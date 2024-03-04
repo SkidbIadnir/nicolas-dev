@@ -28,5 +28,4 @@
         </li>
         {/each}
       </ul>
-      <a href="/{data.username}/bio">to edit bio</a>
 </main>
