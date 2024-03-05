@@ -46,7 +46,7 @@
       <li>
         <details>
           <summary class="font-semibold">Edit</summary>
-          <ul class="p-2">
+          <ul class="p-2 z-10">
             <li><a href="/{u_data?.username}/bio" class="font-semibold">Bio</a></li>
             <li><a href="/{u_data?.username}/edit" class="font-semibold">Links</a></li>
           </ul>
