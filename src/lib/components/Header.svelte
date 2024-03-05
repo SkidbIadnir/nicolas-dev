@@ -42,16 +42,18 @@
       </li>
       <li><a class="font-semibold" href="/skid">Nicolas's links</a></li>
       {#if $user}
-        
       <li>
         <details>
           <summary class="font-semibold">Edit</summary>
           <ul class="p-2 z-10">
             <li><a href="/{u_data?.username}/bio" class="font-semibold">Bio</a></li>
             <li><a href="/{u_data?.username}/edit" class="font-semibold">Links</a></li>
+            <li><a href="/login/photo" class="font-semibold">Photo</a></li>
           </ul>
         </details>
       </li>
+      <li><a href="/{u_data?.username}" class="font-semibold">My page</a></li>
+
       {/if}
     </ul>
   </div>
@@ -62,10 +64,10 @@
     </div>
     {#if $user}
       <a href="/" on:click={logout} class="btn hover:text-error"
-        >Logout<i class="fas fa-right-from-bracket"></i></a
+        >Sign out<i class="fas fa-right-from-bracket"></i></a
       >
     {:else}
-      <a href="/login" class="btn">Login<i class="fas fa-right-to-bracket"></i></a>
+      <a href="/login" class="btn">Sign in<i class="fas fa-right-to-bracket"></i></a>
     {/if}
   </div>
 </div>

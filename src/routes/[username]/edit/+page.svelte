@@ -73,9 +73,9 @@
 
 </script>
 
-<main class="max-w-xl mx-auto">
+<main class="card max-w-xl mx-auto ">
   {#if $userData?.username === $page.params.username}
-    <h2 class="card-title">Edit your links</h2>
+    <h2 class="card-title justify-center text-2xl">Edit your links</h2>
     {#if showForm}
       <form
         on:submit|preventDefault={addLink}
@@ -129,7 +129,7 @@
     {:else}
       <button
         on:click={() => (showForm = true)}
-        class="btn btn-outline btn-info block mx-auto my-4"
+        class="btn btn-outline btn-info block mx-auto my-4 mt-5"
       >
         Add a Link
       </button>

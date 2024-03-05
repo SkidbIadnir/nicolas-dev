@@ -7,6 +7,9 @@
 </script>
 
 <main class="max-w-lg prose text-center mx-auto my-6">
+    <h1 class="justify-center text-2xl mb-3">
+        Edit your bio here
+    </h1>
     <p>
         Curent Bio: <span class="text-info">{data.bio}</span>
     </p>
@@ -24,7 +27,7 @@
                 Your bio
                </span>
             </label>
-            <textarea name="bio" class="textarea textarea-bordered textarea-accent" value={data.bio}/>
+            <textarea name="bio" class="textarea text-base-content textarea-accent" value={data.bio}/>
         </div>
         <p id="errMessage" class="text-error">
             
