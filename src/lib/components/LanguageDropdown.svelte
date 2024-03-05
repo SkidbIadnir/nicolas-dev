@@ -1,9 +1,9 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { getCookie, setCookie } from '$lib/utils/cookies';
-    import uk from '$lib/assets/uk.png'
-    import fr from '$lib/assets/fr.png'
-    import kr from '$lib/assets/kr.png'
+    import uk from '$lib/assets/flags/uk.png'
+    import fr from '$lib/assets/flags/fr.png'
+    import kr from '$lib/assets/flags/kr.png'
 
 
     let lang = 'en';

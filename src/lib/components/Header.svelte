@@ -33,7 +33,7 @@
 
       </ul>
     </div>
-    <a href="/" class="btn btn-ghost text-xl">Nicolas Jurdyc</a>
+    <a href="/#intropage" class="btn btn-ghost text-xl">Nicolas Jurdyc</a>
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
