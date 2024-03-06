@@ -2,7 +2,7 @@
     import "../app.css"
     import { user, userData, auth } from "$lib/firebase";
     import { signOut } from "firebase/auth";
-    import Header from "$lib/components/Header.svelte";
+    import Header from "$lib/components/header/Header.svelte";
 
     $user;
     $userData;
@@ -14,8 +14,8 @@
     }
 </script>
 
-<Header logout={signOutSSR}/>
 <div class="min-h-screen flex flex-col">
+    <Header logout={signOutSSR}/>
     <slot></slot>
 
 </div>

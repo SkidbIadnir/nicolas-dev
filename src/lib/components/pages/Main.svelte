@@ -1,6 +1,7 @@
 <script lang="ts">
  import profilPic from '$lib/assets/images/profile.png';
  import background from '$lib/assets/images/backgrond.jpg';
+ import svelte_logo from '$lib/assets/images/svelte_logo.png';
 
 
     function scrollByAmount(amount: number) {
@@ -29,17 +30,17 @@
     <section id="projects" class="py-20 lg:p-32 flex flex-col gap-24">
         <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-center">Projects</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            <a href="/skid" class="card bg-base-200 p-8 rounded-lg">
-                <h3 class="text-2xl font-bold">Skid</h3>
-                <p class="text-lg">A link shortener with a focus on privacy.</p>
+            <a href="https://github.com/SkidbIadnir/nicolas-dev" class="card bg-base-200 p-8 rounded-lg">
+                <h3 class="text-2xl font-bold">This web site</h3>
+                <p class="text-lg">My own portfolio built with SvelteKit</p>
             </a>
-            <a href="/skid" class="card bg-base-200 p-8 rounded-lg">
-                <h3 class="text-2xl font-bold">Skid</h3>
-                <p class="text-lg">A link shortener with a focus on privacy.</p>
+            <a href="/gamedev" class="card bg-base-200 p-8 rounded-lg">
+                <h3 class="text-2xl font-bold">Game Development</h3>
+                <p class="text-lg">A page to showcase my game development projects</p>
             </a>
-            <a href="/skid" class="card bg-base-200 p-8 rounded-lg">
-                <h3 class="text-2xl font-bold">Skid</h3>
-                <p class="text-lg">A link shortener with a focus on privacy.</p>
+            <a href="/about" class="card bg-base-200 p-8 rounded-lg">
+                <h3 class="text-2xl font-bold">Documents ?</h3>
+                <p class="text-lg">Information about me and my downloadable resume</p>
             </a>
         </div>
     </section>
