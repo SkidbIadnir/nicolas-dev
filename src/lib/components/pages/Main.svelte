@@ -30,15 +30,16 @@
     <section id="projects" class="py-20 lg:p-32 flex flex-col gap-24">
         <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-center">Projects</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            <a href="https://github.com/SkidbIadnir/nicolas-dev" class="card bg-base-200 p-8 rounded-lg">
+            <a target="_blank" href="https://github.com/SkidbIadnir/nicolas-dev" class="card bg-base-200 p-8 rounded-lg hover:text-accent transition-colors duration-200">
                 <h3 class="text-2xl font-bold">This web site</h3>
                 <p class="text-lg">My own portfolio built with SvelteKit</p>
             </a>
-            <a href="/gamedev" class="card bg-base-200 p-8 rounded-lg">
+            <a href="/gamedev" class="card bg-base-200 p-8 rounded-lg hover:text-accent transition-colors duration-200">
                 <h3 class="text-2xl font-bold">Game Development</h3>
                 <p class="text-lg">A page to showcase my game development projects</p>
+                <i class="fas fa-arrow-right card-actions justify-end"></i>
             </a>
-            <a href="/about" class="card bg-base-200 p-8 rounded-lg">
+            <a href="/about" class="card bg-base-200 p-8 rounded-lg hover:text-accent transition-colors duration-200">
                 <h3 class="text-2xl font-bold">Documents ?</h3>
                 <p class="text-lg">Information about me and my downloadable resume</p>
             </a>

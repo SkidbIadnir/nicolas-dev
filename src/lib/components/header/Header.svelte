@@ -29,7 +29,7 @@
         class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
       >
         <li><a href="#projects" class="duration-200">Projects</a></li>
-        <li><a href="/skid" class="">Nicolas's links</a></li>
+        <!-- <li><a href="/skid" class="">Nicolas's links</a></li> -->
 
       </ul>
     </div>
@@ -40,7 +40,7 @@
       <li>
         <a class="duration-200 font-semibold" href="/#projects">Projects</a>
       </li>
-      <li><a class="font-semibold" href="/skid">Nicolas's links</a></li>
+      <!-- <li><a class="font-semibold" href="/skid">Nicolas's links</a></li> -->
       {#if $user}
       <li>
         <details>

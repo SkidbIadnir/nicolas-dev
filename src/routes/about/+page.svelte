@@ -1,18 +1,16 @@
 <script lang="ts">
   import profilePic from "$lib/assets/images/profile.png";
-  import uk from '$lib/assets/flags/uk.png'
-  import fr from '$lib/assets/flags/fr.png'
-  import kr from '$lib/assets/flags/kr.png'
-  import CV_fr from '$lib/assets/files/CV_Nicolas_Jurdyc.pdf'
+  import uk from "$lib/assets/flags/uk.png";
+  import fr from "$lib/assets/flags/fr.png";
+  import kr from "$lib/assets/flags/kr.png";
+  import CV_fr from "$lib/assets/files/CV_Nicolas_Jurdyc.pdf";
 
-function downloadCV(link: string) {
-    const downloadLink = document.createElement('a');
+  function downloadCV(link: string) {
+    const downloadLink = document.createElement("a");
     downloadLink.href = link;
-    downloadLink.download = 'CV.pdf';
+    downloadLink.download = "CV.pdf";
     downloadLink.click();
-}
-    
-
+  }
 </script>
 
 <div class="bg-base-200">
@@ -28,29 +26,14 @@ function downloadCV(link: string) {
             />
             <h1 class="text-xl font-bold">Nicolas Jurdyc</h1>
             <p class="text-base-content">Web & Game Developer</p>
+            <br />
+            <p class="text-base-content justify-start">
+              Email : n.jurdyc@gmail.com
+            </p>
+            <p class="text-base-content justify-start">
+              Phone : +33 06 73 43 23 46
+            </p>
             <div class="mt-6 flex gap-4 justify-center">
-              <div class="dropdown">
-                <div tabindex="0" role="button" class="btn btn-primary m-1">
-                  Contact
-                </div>
-                <div
-                  class="dropdown-content z-[1] card card-compact w-64 p-2 shadow bg-primary text-primary-content"
-                >
-                  <div class="card-body">
-                    <ul class="menu">
-                      <li>Email : n.jurdyc@gmail.com</li>
-                      <li>Phone : +33 06 73 43 23 46</li>
-                      <li>
-                        <a
-                          href="https://www.linkedin.com/in/nicolas-jurdyc"
-                          target="_blank"
-                          ><i class="fa-brands fa-linkedin"></i>LinkedIn</a
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
               <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-secondary m-1">
                   Resume
@@ -59,14 +42,19 @@ function downloadCV(link: string) {
                   class="dropdown-content z-[1] menu p-2 shadow bg-secondary rounded-box w-52"
                 >
                   <li>
-                    <button class="btn-link text-secondary-content" on:click={() => downloadCV(CV_fr)}
-                      ><img src={fr} alt="flag_fr" class="w-5 h-5" />Download<i class="fas fa-file-arrow-down"
+                    <button
+                      class="btn-link text-secondary-content hover:bg-base-content hover:text-secondary"
+                      on:click={() => downloadCV(CV_fr)}
+                      ><img src={fr} alt="flag_fr" class="w-5 h-5" />Download<i
+                        class="fas fa-file-arrow-down"
                       ></i></button
                     >
                   </li>
                   <li>
-                    <button class="btn-link text-secondary-content"
-                      ><img src={uk} alt="flag_uk" class="w-5 h-5" />Download<i class="fas fa-file-arrow-down"
+                    <button
+                      class="btn-link text-secondary-content hover:bg-base-content hover:text-secondary"
+                      ><img src={uk} alt="flag_uk" class="w-5 h-5" />Download<i
+                        class="fas fa-file-arrow-down"
                       ></i></button
                     >
                   </li>
@@ -80,40 +68,41 @@ function downloadCV(link: string) {
               </div>
             </div>
           </div>
-          <hr class="my-6 border-t border-gray-300" />
+          <hr class="my-6 border-t border-secondary" />
           <div class="flex flex-col">
-            <span class="text-gray-700 uppercase font-bold tracking-wider mb-2"
+            <span class="text-base uppercase font-bold tracking-wider mb-2"
               >Skills</span
             >
-            <ul>
-              <li class="mb-2">JavaScript</li>
-              <li class="mb-2">React</li>
-              <li class="mb-2">Node.js</li>
-              <li class="mb-2">HTML/CSS</li>
+            <ul class="text-base">
+              <li class="mb-2">C#</li>
+              <li class="mb-2">SvelteKit</li>
+              <li class="mb-2">Python</li>
+              <li class="mb-2">Unity</li>
               <li class="mb-2">Tailwind Css</li>
             </ul>
           </div>
-          <hr class="my-6 border-t border-gray-300" />
+          <hr class="my-6 border-t border-secondary" />
           <div class="flex flex-col">
-            <span class="text-gray-700 uppercase font-bold tracking-wider mb-2"
+            <span class="text-base uppercase font-bold tracking-wider mb-2"
               >Language</span
             >
-            <ul>
-              <li class="mb-2">JavaScript</li>
-              <li class="mb-2">React</li>
+            <ul class="text-base">
+              <li class="mb-2">French</li>
+              <li class="mb-2">English</li>
             </ul>
           </div>
         </div>
       </div>
       <div class="col-span-4 sm:col-span-9">
-        <div class="bg-white shadow rounded-lg p-6">
-          <!-- <h2 class="text-xl font-bold mb-4">About Me</h2>
-                    <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est
-                        vitae tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas
-                        suscipit. Nunc finibus vel ante id euismod. Vestibulum ante ipsum primis in faucibus orci luctus
-                        et ultrices posuere cubilia Curae; Aliquam erat volutpat. Nulla vulputate pharetra tellus, in
-                        luctus risus rhoncus id.
-                    </p> -->
+        <div class="bg-base-100 shadow rounded-lg p-6">
+          <h2 class="text-xl font-bold mb-4">About Me</h2>
+          <p class="text-base">
+            I am a fifth-year computer science student with a specialization in
+            Python software development and web development. Throughout my
+            academic journey, I have had the opportunity to work with various
+            technologies and programming languages. Currently, I am actively
+            seeking a full-time job beginning in October 2024.
+          </p>
 
           <!-- <h3 class="font-semibold text-center mt-3 -mb-2">
                         Find me on
@@ -161,93 +150,83 @@ function downloadCV(link: string) {
                         </a>
                     </div> -->
 
-          <!-- <h2 class="text-xl font-bold mt-6 mb-4">Experience</h2>
-                    <div class="mb-6">
-                        <div class="flex justify-between flex-wrap gap-2 w-full">
-                            <span class="text-gray-700 font-bold">Web Developer</span>
-                            <p>
-                                <span class="text-gray-700 mr-2">at ABC Company</span>
-                                <span class="text-gray-700">2017 - 2019</span>
-                            </p>
-                        </div>
-                        <p class="mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae
-                            tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas
-                            suscipit.
-                        </p>
-                    </div>
-                    <div class="mb-6">
-                        <div class="flex justify-between flex-wrap gap-2 w-full">
-                            <span class="text-gray-700 font-bold">Web Developer</span>
-                            <p>
-                                <span class="text-gray-700 mr-2">at ABC Company</span>
-                                <span class="text-gray-700">2017 - 2019</span>
-                            </p>
-                        </div>
-                        <p class="mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae
-                            tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas
-                            suscipit.
-                        </p>
-                    </div>
-                    <div class="mb-6">
-                        <div class="flex justify-between flex-wrap gap-2 w-full">
-                            <span class="text-gray-700 font-bold">Web Developer</span>
-                            <p>
-                                <span class="text-gray-700 mr-2">at ABC Company</span>
-                                <span class="text-gray-700">2017 - 2019</span>
-                            </p>
-                        </div>
-                        <p class="mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae
-                            tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas
-                            suscipit.
-                        </p>
-                    </div>
-                    <div class="divider divider-primary"></div>
-                    <h2 class="text-xl font-bold mt-6 mb-4">Experience</h2>
-                    <div class="mb-6">
-                        <div class="flex justify-between flex-wrap gap-2 w-full">
-                            <span class="text-gray-700 font-bold">Web Developer</span>
-                            <p>
-                                <span class="text-gray-700 mr-2">at ABC Company</span>
-                                <span class="text-gray-700">2017 - 2019</span>
-                            </p>
-                        </div>
-                        <p class="mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae
-                            tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas
-                            suscipit.
-                        </p>
-                    </div>
-                    <div class="mb-6">
-                        <div class="flex justify-between flex-wrap gap-2 w-full">
-                            <span class="text-gray-700 font-bold">Web Developer</span>
-                            <p>
-                                <span class="text-gray-700 mr-2">at ABC Company</span>
-                                <span class="text-gray-700">2017 - 2019</span>
-                            </p>
-                        </div>
-                        <p class="mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae
-                            tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas
-                            suscipit.
-                        </p>
-                    </div>
-                    <div class="mb-6">
-                        <div class="flex justify-between flex-wrap gap-2 w-full">
-                            <span class="text-gray-700 font-bold">Web Developer</span>
-                            <p>
-                                <span class="text-gray-700 mr-2">at ABC Company</span>
-                                <span class="text-gray-700">2017 - 2019</span>
-                            </p>
-                        </div>
-                        <p class="mt-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus est vitae
-                            tortor ullamcorper, ut vestibulum velit convallis. Aenean posuere risus non velit egestas
-                            suscipit.
-                        </p>
-                    </div> -->
+          <h2 class="text-xl font-bold mt-6 mb-4">Experience</h2>
+          <div class="mb-6">
+            <div class="flex justify-between flex-wrap gap-2 w-full">
+              <span class="text-base font-bold">Fullstack developer</span>
+              <p>
+                <span class="text-base mr-2">at Blueway Lyon</span>
+                <span class="text-base">SEP 2023 - SEP 2024</span>
+              </p>
+            </div>
+            <ul class="list-disc ml-6 mt-2">
+              <li>Prototyping project using Large Language Model AI (GPT, Mistral)</li>
+              <li>Creating the web application to access the API</li>
+              <li>Deploying the application for intern testing</li>
+            </ul>
+          </div>
+          <div class="mb-6">
+            <div class="flex justify-between flex-wrap gap-2 w-full">
+              <span class="text-base font-bold">Python software developer</span>
+              <p>
+                <span class="text-base mr-2">at ESI Group</span>
+                <span class="text-base">APR 2022 - AUG 2022</span>
+              </p>
+            </div>
+            <ul class="list-disc ml-6 mt-2">
+              <li>Legacy code optimization</li>
+              <li>Implementing new features</li>
+              <li>Documenting</li>
+            </ul>
+          </div>
+          <!-- <div class="mb-6">
+            <div class="flex justify-between flex-wrap gap-2 w-full">
+              <span class="text-base font-bold">Web Developer</span>
+              <p>
+                <span class="text-base mr-2">at ABC Company</span>
+                <span class="text-base">2017 - 2019</span>
+              </p>
+            </div>
+            <p class="mt-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              finibus est vitae tortor ullamcorper, ut vestibulum velit
+              convallis. Aenean posuere risus non velit egestas suscipit.
+            </p>
+          </div> -->
+          <div class="divider divider-secondary"></div>
+          <h2 class="text-xl font-bold mt-6 mb-4">Education</h2>
+          <div class="mb-6 outline-1 outline-offset-4 outline-dashed outline-primary">
+            <div class="flex justify-between flex-wrap gap-2 w-full">
+              <span class="text-base font-bold">Master's degree in Information Technology</span>
+              <p>
+                <span class="text-base mr-2">at EPITECH PARIS</span>
+                <span class="text-base">2019 - 2024</span>
+              </p>
+            </div>
+          </div>
+          <div class="mb-6 outline-1 outline-offset-4 outline-dashed outline-primary">
+            <div class="flex justify-between flex-wrap gap-2 w-full">
+              <span class="text-base font-bold">Game progamming and design certificate</span>
+              <p>
+                <span class="text-base mr-2">at Keimyung University Daegu, South Korea</span>
+                <span class="text-base">2022 - 2023</span>
+              </p>
+            </div>
+          </div>
+          <div class="mb-6 outline-1 outline-offset-4 outline-dashed outline-primary">
+            <div class="flex justify-between flex-wrap gap-2 w-full">
+              <span class="text-base font-bold">Web Developer</span>
+              <p>
+                <span class="text-base mr-2">at ABC Company</span>
+                <span class="text-base">2017 - 2019</span>
+              </p>
+            </div>
+            <p class="mt-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              finibus est vitae tortor ullamcorper, ut vestibulum velit
+              convallis. Aenean posuere risus non velit egestas suscipit.
+            </p>
+          </div>
         </div>
       </div>
     </div>
