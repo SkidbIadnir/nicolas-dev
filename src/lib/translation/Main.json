@@ -1,0 +1,50 @@
+{
+    "hello": {
+        "en": "Hello there",
+        "fr": "Bonjour"
+    },
+    "intro1": {
+        "en": "My name is ",
+        "fr": "Je m'appelle"
+    },
+    "introName": {
+        "en": "Nicolas",
+        "fr": "Nicolas"
+    },
+    "intro2": {
+        "en": ", I am a fullstack developer and I love building things.",
+        "fr": ", je suis un développeur fullstack et j'adore construire des choses."
+    },
+    "buttonProjects": {
+        "en": "Get Started",
+        "fr": "Commencer"
+    },
+    "projects": {
+        "en": "Projects",
+        "fr": "Projets"
+    },
+    "project1Title": {
+        "en": "This web site",
+        "fr": "Ce site web"
+    },
+    "project1Desc": {
+        "en": "My own portfolio built with SvelteKit and Firebase",
+        "fr": "Mon propre portfolio construit avec SvelteKit et Firebase"
+    },
+    "project2Title": {
+        "en": "Game Development",
+        "fr": "Développement de jeux"
+    },
+    "project2Desc": {
+        "en": "A page to showcase my game development projects",
+        "fr": "Une page pour mes projets de développement de jeux"
+    },
+    "project3Title": {
+        "en": "My Resume",
+        "fr": "Mon CV"
+    },
+    "project3Desc": {
+        "en": "Information about me and my downloadable resume",
+        "fr": "Informations à propos de moi et mon CV téléchargeable"
+    }
+}

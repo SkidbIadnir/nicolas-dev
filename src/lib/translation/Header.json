@@ -1,0 +1,30 @@
+{
+    "firstName": {
+        "en": "Nicolas",
+        "fr": "Nicolas"
+    },
+    "lastName": {
+        "en": "Jurdyc",
+        "fr": "Jurdyc"
+    },
+    "Project": {
+        "en": "Projects",
+        "fr": "Projets"
+    },
+    "myPage": {
+        "en": "My Page",
+        "fr": "Ma Page"
+    },
+    "edit": {
+        "en": "Edit",
+        "fr": "Modifier"
+    },
+    "signIn": {
+        "en": "Sign In",
+        "fr": "Se Connecter"
+    },
+    "signOut": {
+        "en": "Sign Out",
+        "fr": "Se Déconnecter"
+    }
+}
