@@ -26,5 +26,13 @@
     "signOut": {
         "en": "Sign Out",
         "fr": "Se Déconnecter"
+    },
+    "bio": {
+        "en": "Bio",
+        "fr": "Bio"
+    },
+    "links": {
+        "en": "Links",
+        "fr": "Liens"
     }
 }

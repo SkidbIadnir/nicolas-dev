@@ -1,0 +1,54 @@
+{
+    "headLinks": {
+        "en": "Links",
+        "fr": "Liens"
+    },
+    "enterBio": {
+        "en": "Edit your bio here",
+        "fr": "Éditez votre bio ici"
+    },
+    "currentBio": {
+        "en": "Current bio:",
+        "fr": "Bio actuelle:"
+    },
+    "save": {
+        "en": "Save",
+        "fr": "Sauvegarder"
+    },
+    "yourBio": {
+        "en": "Your bio",
+        "fr": "Votre bio"
+    },
+    "editLinks": {
+        "en": "Edit your links here",
+        "fr": "Éditez vos liens ici"
+    },
+    "addLink": {
+        "en": "Add a link",
+        "fr": "Ajouter un lien"
+    },
+    "add": {
+        "en": "Add",
+        "fr": "Ajouter"
+    },
+    "delete": {
+        "en": "Delete",
+        "fr": "Supprimer"
+    },
+    "mustBeValid": {
+        "en": "Must have valid title",
+        "fr": "Doit avoir un titre valide"
+    },
+    "mustBeValidUrl": {
+        "en": "Must have valid URL",
+        "fr": "Doit avoir une URL valide"
+    },
+    "good" : {
+        "en": "Looks good!",
+        "fr": "Ça a l'air bon!"
+    },
+    "cancel": {
+        "en": "Cancel",
+        "fr": "Annuler"
+    }
+}

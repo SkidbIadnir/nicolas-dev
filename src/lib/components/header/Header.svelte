@@ -5,6 +5,7 @@
   import { onMount } from "svelte";
   import { getCookie } from "$lib/utils/cookies";
   import translation from '$lib/translation/Header.json'
+  
 
   let lang: string = "en";
   let tranTexts = translation as Record<string, Record<string, string>>;
@@ -56,8 +57,8 @@
         <details>
           <summary class="font-semibold">{tranTexts["edit"][lang]}</summary>
           <ul class="p-2 z-10">
-            <li><a href="/{u_data?.username}/bio" class="font-semibold">Bio</a></li>
-            <li><a href="/{u_data?.username}/edit" class="font-semibold">Links</a></li>
+            <li><a href="/{u_data?.username}/bio" class="font-semibold">{tranTexts["bio"][lang]}</a></li>
+            <li><a href="/{u_data?.username}/edit" class="font-semibold">{tranTexts["links"][lang]}</a></li>
             <li><a href="/login/photo" class="font-semibold">Photo</a></li>
           </ul>
         </details>

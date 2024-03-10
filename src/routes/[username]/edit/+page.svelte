@@ -11,6 +11,15 @@
     updateDoc,
   } from "firebase/firestore";
   import { writable } from "svelte/store";
+  import { onMount } from "svelte";
+  import { getCookie } from "$lib/utils/cookies";
+  import translation from "$lib/translation/UserPage.json";
+
+  let lang: string = "en";
+  let tranTexts = translation as Record<string, Record<string, string>>;
+  onMount(() => {
+    lang = getCookie("lang") || "en";
+  });
 
   const icons = [
     "YouTube",
@@ -75,7 +84,7 @@
 
 <main class="card max-w-xl mx-auto ">
   {#if $userData?.username === $page.params.username}
-    <h2 class="card-title justify-center text-2xl">Edit your links</h2>
+    <h2 class="card-title justify-center text-2xl">{tranTexts["editLinks"][lang]}</h2>
     {#if showForm}
       <form
         on:submit|preventDefault={addLink}
@@ -106,24 +115,24 @@
         />
         <div class="my-4">
           {#if !titleIsValid}
-            <p class="text-error text-xs">Must have valid title</p>
+            <p class="text-error text-xs">{tranTexts["mustBeValid"][lang]}</p>
           {/if}
           {#if !urlIsValid}
-            <p class="text-error text-xs">Must have a valid URL</p>
+            <p class="text-error text-xs">{tranTexts["mustBeValidUrl"][lang]}</p>
           {/if}
           {#if formIsValid}
-            <p class="text-success text-xs">Looks good!</p>
+            <p class="text-success text-xs">{tranTexts["good"][lang]}</p>
           {/if}
         </div>
 
         <button
           disabled={!formIsValid}
           type="submit"
-          class="btn btn-success block">Add Link</button
+          class="btn btn-success block">{tranTexts["addLink"][lang]}</button
         >
 
         <button type="button" class="btn btn-xs my-4" on:click={cancelLink}
-          >Cancel</button
+          >{tranTexts["cancel"][lang]}</button
         >
       </form>
     {:else}
@@ -131,7 +140,7 @@
         on:click={() => (showForm = true)}
         class="btn btn-outline btn-info block mx-auto my-4 mt-5"
       >
-        Add a Link
+      {tranTexts["addLink"][lang]}
       </button>
     {/if}
   {/if}
@@ -141,7 +150,7 @@
       <button
         on:click={() => deleteLink(item)}
         class="btn btn-xs btn-error invisible group-hover:visible transition-all absolute -right-6 bottom-10"
-        >Delete</button
+        >{tranTexts["delete"][lang]}</button
       >
     </div>
   
