@@ -2,6 +2,15 @@
   import AuthCheck from "$lib/components/AuthCheck.svelte";
   import { db, user, userData } from "$lib/firebase";
   import { doc, getDoc, writeBatch } from "firebase/firestore";
+  import { onMount } from "svelte";
+  import { getCookie } from "$lib/utils/cookies";
+  import translation from "$lib/translation/SignInUsername.json";
+
+  let lang: string = "en";
+  let tranTexts = translation as Record<string, Record<string, string>>;
+  onMount(() => {
+    lang = getCookie("lang") || "en";
+  });
 
   let username = "";
   let loading = false;
@@ -64,12 +73,12 @@
 <AuthCheck>
   {#if $userData?.username}
     <p class="text-primary card-title">
-      Your username is <span class="font-bold text-success"
+      {tranTexts["signed"][lang]} <span class="font-bold text-success"
         >@{$userData.username}</span
       >
     </p>
-    <p class="text-secondary text-lg p-2">(usernames cannot be changed)</p>
-    <a href="/login/photo" class="btn btn-primary">Upload Profile Image</a>
+    <p class="text-secondary text-lg p-2">{tranTexts["warn"][lang]}</p>
+    <a href="/login/photo" class="btn btn-primary">{tranTexts["upload"][lang]}</a>
   {:else}
     <form class="w-2/5" on:submit={confirmUserName}>
       <br />
@@ -85,18 +94,18 @@
       />
       <div class="my-4 min-h-16 px-8 w-full">
         {#if loading}
-          <p class="text-secondary">Checking...</p>
+          <p class="text-secondary">{tranTexts["checking"][lang]}</p>
         {/if}
         {#if !isValid && isTouched}
           <p class="text-error">
-            must be 3-16 characters long, alphanumeric only
+            {tranTexts["spec"][lang]}
           </p>
         {/if}
         {#if isValid && !isAvailable && !loading}
-          <p class="text-warning">@{username} is not available</p>
+          <p class="text-warning">@{username} {tranTexts["notAvailable"][lang]}</p>
         {/if}
         {#if isAvailable}
-          <button class="btn btn-success">Choose @{username}</button>
+          <button class="btn btn-success">{tranTexts["choose"][lang]} @{username}</button>
         {/if}
       </div>
     </form>

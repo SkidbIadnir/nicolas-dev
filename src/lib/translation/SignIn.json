@@ -1,0 +1,34 @@
+{
+    "signIn": {
+        "en": "Sign In",
+        "fr": "Se connecter"
+    },
+    "signInWithGoogle": {
+        "en": "Sign in with Google",
+        "fr": "Se connecter avec Google"
+    },
+    "signInWithGitHub": {
+        "en": "Sign in with GitHub",
+        "fr": "Se connecter avec GitHub"
+    },
+    "welcome": {
+        "en": "Welcome",
+        "fr": "Bienvenue"
+    },
+    "message1": {
+        "en": "You are signed in",
+        "fr": "Vous êtes connecté"
+    },
+    "signOut": {
+        "en": "Sign Out",
+        "fr": "Se déconnecter"
+    },
+    "continue": {
+        "en": "Continue to next step",
+        "fr": "Continuer à l'étape suivante"
+    },
+    "authCheck": {
+        "en": "Please sign in to continue",
+        "fr": "Veuillez vous connecter pour continuer"
+    }
+}

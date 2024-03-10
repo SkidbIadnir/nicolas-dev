@@ -1,0 +1,134 @@
+{
+  "skills": {
+    "en": "Skills",
+    "fr": "Compétences"
+  },
+  "languages": {
+    "en": "Languages",
+    "fr": "Langues"
+  },
+  "experience": {
+    "en": "Experience",
+    "fr": "Expérience"
+  },
+  "fullName": {
+    "en": "Nicolas Jurdyc",
+    "fr": "Nicolas Jurdyc"
+  },
+  "role": {
+    "en": "Web & Game Developer",
+    "fr": "Développeur Web & Jeux"
+  },
+  "email": {
+    "en": "Email",
+    "fr": "Email"
+  },
+  "phone": {
+    "en": "Phone",
+    "fr": "Téléphone"
+  },
+  "resume": {
+    "en": "Resume",
+    "fr": "CV"
+  },
+  "download": {
+    "en": "Download",
+    "fr": "Télécharger"
+  },
+  "aboutMe": {
+    "en": "About Me",
+    "fr": "À propos de moi"
+  },
+  "aboutContent": {
+    "en": "I am a fifth-year computer science student with a specialization in Python software development and web development. Throughout my academic journey, I have had the opportunity to work with various technologies and programming languages. Currently, I am actively seeking a full-time job beginning in October 2024.",
+    "fr": "Je suis un étudiant en informatique de cinquième année avec une spécialisation en développement de logiciels Python et en développement Web. Tout au long de mon parcours académique, j'ai eu l'occasion de travailler avec diverses technologies et langages de programmation. Actuellement, je suis activement à la recherche d'un emploi à temps plein à partir d'octobre 2024."
+  },
+  "findMeOn": {
+    "en": "Find me on",
+    "fr": "Retrouvez-moi sur"
+  },
+  "at": {
+    "en": "at",
+    "fr": "à"
+  },
+  "from": {
+    "en": "from",
+    "fr": "de"
+  },
+  "to": {
+    "en": "to",
+    "fr": "à"
+  },
+  "webDeveloper": {
+    "en": "Web Developer",
+    "fr": "Développeur Web"
+  },
+  "atCompany": {
+    "en": "at",
+    "fr": "chez"
+  },
+  "french": {
+    "en": "French",
+    "fr": "Français"
+  },
+  "english": {
+    "en": "English",
+    "fr": "Anglais"
+  },
+  "expRole1": {
+    "en": "Full Stack Developer Intern",
+    "fr": "Stagiaire développeur Full Stack"
+  },
+  "expDate1": {
+    "en": "September 2023 - September 2024",
+    "fr": "Septembre 2023 - Septembre 2024"
+  },
+  "expDesc1_1": {
+    "en": "Prototyping project using Large Language Model AI (GPT, Mistral)",
+    "fr": "Projet de prototypage utilisant l'IA de modèle de langue large (GPT, Mistral)"
+  },
+  "expDesc1_2": {
+    "en": "Creating the web application to access the API",
+    "fr": "Création de l'application web pour accéder à l'API"
+  },
+  "expDesc1_3": {
+    "en": "Deploying the application for intern testing",
+    "fr": "Déploiement de l'application pour les tests internes"
+  },
+  "expRole2": {
+    "en": "Python Software Developer Intern",
+    "fr": "Stagiaire développeur logiciel Python"
+  },
+  "expDate2": {
+    "en": "April 2022 - August 2022",
+    "fr": "Avril 2022 - Août 2022"
+  },
+  "expDesc2_1": {
+    "en": "Legacy code optimization",
+    "fr": "Optimisation de code obsolète"
+  },
+  "expDesc2_2": {
+    "en": "Implementing new features",
+    "fr": "Implémentation de nouvelles fonctionnalités"
+  },
+  "expDesc2_3": {
+    "en": "Documenting",
+    "fr": "Documentation"
+  },
+  "education": {
+    "en": "Education",
+    "fr": "Éducation"
+  },
+  "degreeName1": {
+    "en": "Master's degree in Information Technology",
+    "fr": "Expert en technologies de l'information"
+  },
+  "degreeName2": {
+    "en": "Game progamming and design certificate",
+    "fr": "Certificat en programmation et design de jeux"
+  },
+  "degreeName3": {
+    "en": "Scientific Baccalaureate",
+    "fr": "Baccalauréat scientifique"
+  }
+}

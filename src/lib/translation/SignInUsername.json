@@ -1,0 +1,30 @@
+{
+    "signed": {
+        "en": "Your username is",
+        "fr": "Votre nom d'utilisateur est"
+    },
+    "warn": {
+        "en": "(usernames cannot be changed)",
+        "fr": "(les noms d'utilisateur ne peuvent pas être modifiés)"
+    },
+    "upload": {
+        "en": "Upload Profile Image",
+        "fr": "Modifier l'image de profil"
+    },
+    "checking": {
+        "en": "Checking...",
+        "fr": "Vérification..."
+    },
+    "spec": {
+        "en": "must be 3-16 characters long, alphanumeric only",
+        "fr": "doit être de 3 à 16 caractères de long, alphanumérique seulement"
+    },
+    "notAvailable": {
+        "en": "is not available",
+        "fr": "n'est pas disponible"
+    },
+    "choose": {
+        "en": "Choose",
+        "fr": "Choisir"
+    }
+}

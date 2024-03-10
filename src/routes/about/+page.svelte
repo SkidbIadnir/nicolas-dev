@@ -4,6 +4,15 @@
   import fr from "$lib/assets/flags/fr.png";
   import kr from "$lib/assets/flags/kr.png";
   import CV_fr from "$lib/assets/files/CV_Nicolas_Jurdyc.pdf";
+  import translation from "$lib/translation/About.json";
+  import { onMount } from "svelte";
+  import { getCookie } from "$lib/utils/cookies";
+
+  let lang: string = "en";
+  let tranTexts = translation as Record<string, Record<string, string>>;
+  onMount(() => {
+    lang = getCookie("lang") || "en";
+  });
 
   function downloadCV(link: string) {
     const downloadLink = document.createElement("a");
@@ -24,19 +33,19 @@
               alt="profil"
               class="w-32 h-32 bg-base-100 rounded-full mb-4 shrink-0"
             />
-            <h1 class="text-xl font-bold">Nicolas Jurdyc</h1>
-            <p class="text-base-content">Web & Game Developer</p>
+            <h1 class="text-xl font-bold">{tranTexts["fullName"][lang]}</h1>
+            <p class="text-base-content">{tranTexts["role"][lang]}</p>
             <br />
             <p class="text-base-content justify-start">
-              Email : n.jurdyc@gmail.com
+              {tranTexts["email"][lang]} : n.jurdyc@gmail.com
             </p>
             <p class="text-base-content justify-start">
-              Phone : +33 06 73 43 23 46
+              {tranTexts["phone"][lang]} : +33 06 73 43 23 46
             </p>
             <div class="mt-6 flex gap-4 justify-center">
               <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-secondary m-1">
-                  Resume
+                  {tranTexts["resume"][lang]}
                 </div>
                 <ul
                   class="dropdown-content z-[1] menu p-2 shadow bg-secondary rounded-box w-52"
@@ -45,7 +54,7 @@
                     <button
                       class="btn-link text-secondary-content hover:bg-base-content hover:text-secondary"
                       on:click={() => downloadCV(CV_fr)}
-                      ><img src={fr} alt="flag_fr" class="w-5 h-5" />Download<i
+                      ><img src={fr} alt="flag_fr" class="w-5 h-5" />{tranTexts["download"][lang]}<i
                         class="fas fa-file-arrow-down"
                       ></i></button
                     >
@@ -53,7 +62,7 @@
                   <li>
                     <button
                       class="btn-link text-secondary-content hover:bg-base-content hover:text-secondary"
-                      ><img src={uk} alt="flag_uk" class="w-5 h-5" />Download<i
+                      ><img src={uk} alt="flag_uk" class="w-5 h-5" />{tranTexts["download"][lang]}<i
                         class="fas fa-file-arrow-down"
                       ></i></button
                     >
@@ -71,7 +80,7 @@
           <hr class="my-6 border-t border-secondary" />
           <div class="flex flex-col">
             <span class="text-base uppercase font-bold tracking-wider mb-2"
-              >Skills</span
+              >{tranTexts["skills"][lang]}</span
             >
             <ul class="text-base">
               <li class="mb-2">C#</li>
@@ -84,24 +93,20 @@
           <hr class="my-6 border-t border-secondary" />
           <div class="flex flex-col">
             <span class="text-base uppercase font-bold tracking-wider mb-2"
-              >Language</span
+              >{tranTexts["languages"][lang]}</span
             >
             <ul class="text-base">
-              <li class="mb-2">French</li>
-              <li class="mb-2">English</li>
+              <li class="mb-2">{tranTexts["french"][lang]}</li>
+              <li class="mb-2">{tranTexts["english"][lang]}</li>
             </ul>
           </div>
         </div>
       </div>
       <div class="col-span-4 sm:col-span-9">
         <div class="bg-base-100 shadow rounded-lg p-6">
-          <h2 class="text-xl font-bold mb-4">About Me</h2>
+          <h2 class="text-xl font-bold mb-4">{tranTexts["aboutMe"][lang]}</h2>
           <p class="text-base">
-            I am a fifth-year computer science student with a specialization in
-            Python software development and web development. Throughout my
-            academic journey, I have had the opportunity to work with various
-            technologies and programming languages. Currently, I am actively
-            seeking a full-time job beginning in October 2024.
+            {tranTexts["aboutContent"][lang]}
           </p>
 
           <!-- <h3 class="font-semibold text-center mt-3 -mb-2">
@@ -150,33 +155,33 @@
                         </a>
                     </div> -->
 
-          <h2 class="text-xl font-bold mt-6 mb-4">Experience</h2>
+          <h2 class="text-xl font-bold mt-6 mb-4">{tranTexts["experience"][lang]}</h2>
           <div class="mb-6">
             <div class="flex justify-between flex-wrap gap-2 w-full">
-              <span class="text-base font-bold">Fullstack developer</span>
+              <span class="text-base font-bold">{tranTexts["expRole1"][lang]}</span>
               <p>
-                <span class="text-base mr-2">at Blueway Lyon</span>
-                <span class="text-base">SEP 2023 - SEP 2024</span>
+                <span class="text-base mr-2">{tranTexts["atCompany"][lang]} Blueway Lyon</span>
+                <span class="text-base">{tranTexts["expDate1"][lang]}</span>
               </p>
             </div>
             <ul class="list-disc ml-6 mt-2">
-              <li>Prototyping project using Large Language Model AI (GPT, Mistral)</li>
-              <li>Creating the web application to access the API</li>
-              <li>Deploying the application for intern testing</li>
+              <li>{tranTexts["expDesc1_1"][lang]}</li>
+              <li>{tranTexts["expDesc1_2"][lang]}</li>
+              <li>{tranTexts["expDesc1_3"][lang]}</li>
             </ul>
           </div>
           <div class="mb-6">
             <div class="flex justify-between flex-wrap gap-2 w-full">
-              <span class="text-base font-bold">Python software developer</span>
+              <span class="text-base font-bold">{tranTexts["expRole2"][lang]}</span>
               <p>
-                <span class="text-base mr-2">at ESI Group</span>
-                <span class="text-base">APR 2022 - AUG 2022</span>
+                <span class="text-base mr-2">{tranTexts["atCompany"][lang]} ESI Group</span>
+                <span class="text-base">{tranTexts["expDate2"][lang]}</span>
               </p>
             </div>
             <ul class="list-disc ml-6 mt-2">
-              <li>Legacy code optimization</li>
-              <li>Implementing new features</li>
-              <li>Documenting</li>
+              <li>{tranTexts["expDesc2_1"][lang]}</li>
+              <li>{tranTexts["expDesc2_2"][lang]}</li>
+              <li>{tranTexts["expDesc2_3"][lang]}</li>
             </ul>
           </div>
           <!-- <div class="mb-6">
@@ -194,38 +199,33 @@
             </p>
           </div> -->
           <div class="divider divider-secondary"></div>
-          <h2 class="text-xl font-bold mt-6 mb-4">Education</h2>
+          <h2 class="text-xl font-bold mt-6 mb-4">{tranTexts["education"][lang]}</h2>
           <div class="mb-6 outline-1 outline-offset-4 outline-dashed outline-primary">
             <div class="flex justify-between flex-wrap gap-2 w-full">
-              <span class="text-base font-bold">Master's degree in Information Technology</span>
+              <span class="text-base font-bold">{tranTexts["degreeName1"][lang]}</span>
               <p>
-                <span class="text-base mr-2">at EPITECH PARIS</span>
+                <span class="text-base mr-2">{tranTexts["at"][lang]} EPITECH, Paris, France</span>
                 <span class="text-base">2019 - 2024</span>
               </p>
             </div>
           </div>
           <div class="mb-6 outline-1 outline-offset-4 outline-dashed outline-primary">
             <div class="flex justify-between flex-wrap gap-2 w-full">
-              <span class="text-base font-bold">Game progamming and design certificate</span>
+              <span class="text-base font-bold">{tranTexts["degreeName2"][lang]}</span>
               <p>
-                <span class="text-base mr-2">at Keimyung University Daegu, South Korea</span>
+                <span class="text-base mr-2">{tranTexts["at"][lang]} Keimyung University, Daegu, South Korea</span>
                 <span class="text-base">2022 - 2023</span>
               </p>
             </div>
           </div>
           <div class="mb-6 outline-1 outline-offset-4 outline-dashed outline-primary">
             <div class="flex justify-between flex-wrap gap-2 w-full">
-              <span class="text-base font-bold">Web Developer</span>
+              <span class="text-base font-bold">{tranTexts["degreeName3"][lang]}</span>
               <p>
-                <span class="text-base mr-2">at ABC Company</span>
-                <span class="text-base">2017 - 2019</span>
+                <span class="text-base mr-2">{tranTexts["at"][lang]} St Thomas d'Aquin, Oullins, France</span>
+                <span class="text-base">2018</span>
               </p>
             </div>
-            <p class="mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              finibus est vitae tortor ullamcorper, ut vestibulum velit
-              convallis. Aenean posuere risus non velit egestas suscipit.
-            </p>
           </div>
         </div>
       </div>
