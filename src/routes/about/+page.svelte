@@ -3,7 +3,8 @@
   import uk from "$lib/assets/flags/uk.png";
   import fr from "$lib/assets/flags/fr.png";
   import kr from "$lib/assets/flags/kr.png";
-  import CV_fr from "$lib/assets/files/CV_Nicolas_Jurdyc.pdf";
+  import CV_fr from "$lib/assets/files/CV_Nicolas_Jurdyc_FR.pdf";
+  import CV_en from "$lib/assets/files/CV_Nicolas_Jurdyc_EN.pdf";
   import translation from "$lib/translation/About.json";
   import { onMount } from "svelte";
   import { getCookie } from "$lib/utils/cookies";
@@ -17,7 +18,7 @@
   function downloadCV(link: string) {
     const downloadLink = document.createElement("a");
     downloadLink.href = link;
-    downloadLink.download = "CV.pdf";
+    downloadLink.download = "CV_Nicolas_Jurdyc.pdf";
     downloadLink.click();
   }
 </script>
@@ -62,6 +63,7 @@
                   <li>
                     <button
                       class="btn-link text-secondary-content hover:bg-base-content hover:text-secondary"
+                      on:click={() => downloadCV(CV_fr)}
                       ><img src={uk} alt="flag_uk" class="w-5 h-5" />{tranTexts["download"][lang]}<i
                         class="fas fa-file-arrow-down"
                       ></i></button
