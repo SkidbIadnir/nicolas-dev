@@ -1,18 +1,22 @@
 {
     "title": {
         "en": "Upload a Profile Photo",
-        "fr": "Modifier la photo de profil"
+        "fr": "Modifier la photo de profil",
+        "kr": "프로필 사진 업로드"
     },
     "pick" : {
         "en": "Pick a photo",
-        "fr": "Choisir une photo"
+        "fr": "Choisir une photo",
+        "kr": "사진 선택"
     },
     "upload" : {
         "en": "Uploading...",
-        "fr": "Modification en cours..."
+        "fr": "Modification en cours...",
+        "kr": "업로드 중..."
     },
     "finish" : {
         "en": "Finish",
-        "fr": "Terminer"
+        "fr": "Terminer",
+        "kr": "완료"
     }
 }

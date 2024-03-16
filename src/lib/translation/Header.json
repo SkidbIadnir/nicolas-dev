@@ -1,38 +1,47 @@
 {
     "firstName": {
         "en": "Nicolas",
-        "fr": "Nicolas"
+        "fr": "Nicolas",
+        "kr": "니콜라"
     },
     "lastName": {
         "en": "Jurdyc",
-        "fr": "Jurdyc"
+        "fr": "Jurdyc",
+        "kr": "주르디크"
     },
     "Project": {
         "en": "Projects",
-        "fr": "Projets"
+        "fr": "Projets",
+        "kr": "프로젝트"
     },
     "myPage": {
         "en": "My Page",
-        "fr": "Ma Page"
+        "fr": "Ma Page",
+        "kr": "내 페이지"
     },
     "edit": {
         "en": "Edit",
-        "fr": "Modifier"
+        "fr": "Modifier",
+        "kr": "수정"
     },
     "signIn": {
         "en": "Sign In",
-        "fr": "Se Connecter"
+        "fr": "Se Connecter",
+        "kr": "로그인"
     },
     "signOut": {
         "en": "Sign Out",
-        "fr": "Se Déconnecter"
+        "fr": "Se Déconnecter",
+        "kr": "로그아웃"
     },
     "bio": {
         "en": "Bio",
-        "fr": "Bio"
+        "fr": "Bio",
+        "kr": "소개"
     },
     "links": {
         "en": "Links",
-        "fr": "Liens"
+        "fr": "Liens",
+        "kr": "링크"
     }
 }

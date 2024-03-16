@@ -12,7 +12,7 @@
     const languageOptions = [
         {name: 'English', code: 'en', flag: uk},
         {name: 'Français', code: 'fr', flag: fr},
-        {name: '한국어 *soon*', code: 'en', flag: kr},
+        {name: '한국어 *soon*', code: 'kr', flag: kr},
     ]
 
     onMount(() => {

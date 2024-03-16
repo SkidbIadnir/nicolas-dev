@@ -1,11 +1,13 @@
 {
     "start": {
         "en": "Sign in",
-        "fr": "Se connecter"
+        "fr": "Se connecter",
+        "kr": "로그인"
     },
     "end": {
         "en": "Upload Photo",
-        "fr": "Télécharger une photo"
+        "fr": "Télécharger une photo",
+        "kr": "사진 업로드"
     }
 
 }
