@@ -1,50 +1,62 @@
 {
-    "hello": {
-        "en": "Hello there",
-        "fr": "Bonjour"
-    },
-    "intro1": {
-        "en": "My name is ",
-        "fr": "Je m'appelle"
-    },
-    "introName": {
-        "en": "Nicolas",
-        "fr": "Nicolas"
-    },
-    "intro2": {
-        "en": ", I am a fullstack developer and I love building things.",
-        "fr": ", je suis un développeur fullstack et j'adore construire des choses."
-    },
-    "buttonProjects": {
-        "en": "Get Started",
-        "fr": "Commencer"
-    },
-    "projects": {
-        "en": "Projects",
-        "fr": "Projets"
-    },
-    "project1Title": {
-        "en": "This web site",
-        "fr": "Ce site web"
-    },
-    "project1Desc": {
-        "en": "My own portfolio built with SvelteKit and Firebase",
-        "fr": "Mon propre portfolio construit avec SvelteKit et Firebase"
-    },
-    "project2Title": {
-        "en": "Game Development",
-        "fr": "Développement de jeux"
-    },
-    "project2Desc": {
-        "en": "A page to showcase my game development projects",
-        "fr": "Une page pour mes projets de développement de jeux"
-    },
-    "project3Title": {
-        "en": "My Resume",
-        "fr": "Mon CV"
-    },
-    "project3Desc": {
-        "en": "Information about me and my downloadable resume",
-        "fr": "Informations à propos de moi et mon CV téléchargeable"
-    }
+  "hello": {
+    "en": "Hello there",
+    "fr": "Bonjour",
+    "kr": "안녕하세요"
+  },
+  "intro1": {
+    "en": "My name is ",
+    "fr": "Je m'appelle",
+    "kr": "제 이름은"
+  },
+  "introName": {
+    "en": "Nicolas",
+    "fr": "Nicolas",
+    "kr": "니콜라"
+  },
+  "intro2": {
+    "en": ", I am a fullstack developer and I love building things.",
+    "fr": ", je suis un développeur fullstack et j'adore construire des choses.",
+    "kr": ", 풀스택 개발자이고, 물건을 만드는 것을 좋아합니다."
+  },
+  "buttonProjects": {
+    "en": "Get Started",
+    "fr": "Commencer",
+    "kr": "시작하기"
+  },
+  "projects": {
+    "en": "Projects",
+    "fr": "Projets",
+    "kr": "프로젝트"
+  },
+  "project1Title": {
+    "en": "This web site",
+    "fr": "Ce site web",
+    "kr": "이 웹 사이트"
+  },
+  "project1Desc": {
+    "en": "My own portfolio built with SvelteKit and Firebase",
+    "fr": "Mon propre portfolio construit avec SvelteKit et Firebase",
+    "kr": "SvelteKit과 Firebase로 만든 나의 포트폴리오"
+  },
+  "project2Title": {
+    "en": "Game Development",
+    "fr": "Développement de jeux",
+    "kr": "게임 개발"
+  },
+  "project2Desc": {
+    "en": "A page to showcase my game development projects",
+    "fr": "Une page pour mes projets de développement de jeux",
+    "kr": "게임 개발 프로젝트를 소개하는 페이지"
+  },
+  "project3Title": {
+    "en": "My Resume",
+    "fr": "Mon CV",
+    "kr": "나의 이력서"
+  },
+  "project3Desc": {
+    "en": "Information about me and my downloadable resume",
+    "fr": "Informations à propos de moi et mon CV téléchargeable",
+    "kr": "나와 내 이력서 다운로드 가능한 정보"
+  }
 }
