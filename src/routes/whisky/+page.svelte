@@ -167,7 +167,7 @@
 </div>
 <button
   on:click={scrollToForm}
-  class="floating-button btn btn-secondary lg:hidden"
+  class="floating-button btn btn-primary lg:hidden"
 >
   To the form
 </button>
