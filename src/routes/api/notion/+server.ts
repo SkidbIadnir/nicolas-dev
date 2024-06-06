@@ -44,9 +44,7 @@ import { fromJSON } from "postcss";
           number: formData.age, // Replace with actual age
         },
         Type: {
-          select: {
-            name: formData.type, // Replace with actual type
-          },
+          multi_select: formData.type, // Replace with actual type
         },
         Price: {
           number: formData.price, // Replace with actual price
@@ -63,6 +61,8 @@ import { fromJSON } from "postcss";
       },
     }),
   });
+  const data = await res.json();
+  console.log("The data : ", data);
   return Response.json({ status: "ok" });
 }
 

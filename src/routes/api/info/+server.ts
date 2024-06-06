@@ -46,7 +46,8 @@
     data.properties.Region.select.options.forEach((region: any) => {
       regions.push(region.name);
     });
-    data.properties.Type.select.options.forEach((type: any) => {
+
+    data.properties.Type.multi_select.options.forEach((type: any) => {
       types.push(type.name);
     });
   } catch (error) {

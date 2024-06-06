@@ -9,7 +9,7 @@
     region: "",
     taste: "",
     age: 0,
-    type: "",
+    type: [] as { name: string }[],
     price: 0,
     placePurchased: "",
   };
@@ -61,6 +61,15 @@
     const data = await res.json();
     if (data.status === "ok") {
       location.reload();
+    }
+  }
+
+  function toggleType(type: string) {
+    const index = formData.type.findIndex((t) => t.name === type);
+    if (index === -1) {
+      formData.type = [...formData.type, { name: type }];
+    } else {
+      formData.type = formData.type.filter((t) => t.name !== type);
     }
   }
 </script>
@@ -129,18 +138,21 @@
           required
         />
       </div>
-      <div class="form-control">
-        <label for="type-select" class="label">Type</label>
-        <select
-          bind:value={formData.type}
-          class="select select-bordered"
-          required
-        >
-          <option value="" disabled>Select type</option>
+      <div class="form-control col-span-2">
+        <label class="label">Type</label>
+        <div class="grid grid-cols-2 gap-2">
           {#each data.props.types as type}
-            <option value={type}>{type}</option>
+            <div class="form-control flex items-center flex-row">
+              <input
+                type="checkbox"
+                class="checkbox checkbox-primary"
+                checked={formData.type.some((t) => t.name === type)}
+                on:change={() => toggleType(type)}
+              />
+              <label class="label-text ml-2">{type}</label>
+            </div>
           {/each}
-        </select>
+        </div>
       </div>
       <div class="form-control">
         <label for="price-input" class="label">Price</label>
@@ -161,7 +173,11 @@
           id="place-purchased-input"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Add Whisky</button>
+      <div class="form-control">
+        <div class="flex justify-end">
+          <button type="submit" class="btn btn-primary">Add Whisky</button>
+        </div>
+      </div>
     </form>
   </main>
 </div>
