@@ -16,6 +16,10 @@
       behavior: "smooth",
     });
   }
+  async function handleNotionAPI() {
+    const rep = await fetch("/api/notion");
+    const data = await rep.json();
+  }
 </script>
 
 <main class="flex flex-1 flex-col">
