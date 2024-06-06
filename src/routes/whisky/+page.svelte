@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import type { PageData } from "./$types";
 
   export let data: PageData;
@@ -14,7 +14,39 @@
     placePurchased: "",
   };
 
-  onMount(async () => {});
+  let isBrowser = typeof window !== "undefined";
+
+  let handleScroll: () => void;
+  let scrollToForm: () => void;
+  if (isBrowser) {
+    handleScroll = () => {
+      const formElement = document.getElementById("form");
+      const buttonElement = document.querySelector(".floating-button");
+      if (formElement && buttonElement) {
+        const rect = formElement.getBoundingClientRect();
+        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+          buttonElement.classList.add("hidden");
+        } else {
+          buttonElement.classList.remove("hidden");
+        }
+      }
+    };
+    onMount(() => {
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
+    });
+
+    onDestroy(() => {
+      window.removeEventListener("scroll", handleScroll);
+    });
+
+    scrollToForm = () => {
+      const formElement = document.getElementById("form");
+      if (formElement) {
+        formElement.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+  }
 
   async function handleSubmit() {
     console.log("Form data: ", formData);
@@ -29,13 +61,6 @@
     const data = await res.json();
     if (data.status === "ok") {
       location.reload();
-    }
-  }
-
-  function scrollToForm() {
-    const formElement = document.getElementById("form");
-    if (formElement) {
-      formElement.scrollIntoView({ behavior: "smooth" });
     }
   }
 </script>
@@ -140,7 +165,10 @@
     </form>
   </main>
 </div>
-<button on:click={scrollToForm} class="floating-button btn btn-secondary">
+<button
+  on:click={scrollToForm}
+  class="floating-button btn btn-secondary lg:hidden"
+>
   To the form
 </button>
 
@@ -148,5 +176,9 @@
   /* Optional: Additional styling for the floating button */
   .floating-button {
     @apply fixed bottom-4 right-4;
+  }
+
+  .floating-button.hidden {
+    display: none;
   }
 </style>
