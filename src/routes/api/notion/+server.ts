@@ -43,6 +43,9 @@ import { fromJSON } from "postcss";
         "Age (OF THE BOTTLE)": {
           number: formData.age, // Replace with actual age
         },
+        ABV: {
+          number: formData.abv / 100, // Replace with actual abv
+        },
         Type: {
           multi_select: formData.type, // Replace with actual type
         },
@@ -65,4 +68,3 @@ import { fromJSON } from "postcss";
   console.log("The data : ", data);
   return Response.json({ status: "ok" });
 }
-

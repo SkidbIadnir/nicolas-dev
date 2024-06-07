@@ -9,6 +9,7 @@
     region: "",
     taste: "",
     age: 0,
+    abv: 0,
     type: [] as { name: string }[],
     price: 0,
     placePurchased: "",
@@ -138,44 +139,57 @@
           required
         />
       </div>
-      <div class="form-control col-span-2">
-        <label class="label">Type</label>
-        <div class="grid grid-cols-2 gap-2">
-          {#each data.props.types as type}
-            <div class="form-control flex items-center flex-row">
-              <input
-                type="checkbox"
-                class="checkbox checkbox-primary"
-                checked={formData.type.some((t) => t.name === type)}
-                on:change={() => toggleType(type)}
-              />
-              <label class="label-text ml-2">{type}</label>
-            </div>
-          {/each}
-        </div>
-      </div>
       <div class="form-control">
-        <label for="price-input" class="label">Price</label>
+        <label for="abv-input" class="label">ABV %</label>
         <input
           type="number"
-          bind:value={formData.price}
+          min="0"
+          max="100"
+          bind:value={formData.abv}
           class="input input-bordered"
           required
         />
-      </div>
-      <div class="form-control">
-        <label for="place-purchased-input" class="label">Place Purchased</label>
-        <input
-          type="text"
-          bind:value={formData.placePurchased}
-          class="input input-bordered"
-          required
-          id="place-purchased-input"
-        />
-      </div>
-      <div class="form-control">
-        <div class="flex justify-end">
-          <button type="submit" class="btn btn-primary">Add Whisky</button>
+        <div class="form-control col-span-2">
+          <label for="type-input" class="label">Type</label>
+          <div class="grid grid-cols-2 gap-2">
+            {#each data.props.types as type}
+              <div class="form-control flex items-center flex-row">
+                <input
+                  type="checkbox"
+                  class="checkbox checkbox-primary"
+                  checked={formData.type.some((t) => t.name === type)}
+                  on:change={() => toggleType(type)}
+                />
+                <label class="label-text ml-2" for="type-input">{type}</label>
+              </div>
+            {/each}
+          </div>
+        </div>
+        <div class="form-control">
+          <label for="price-input" class="label">Price</label>
+          <input
+            type="number"
+            bind:value={formData.price}
+            class="input input-bordered"
+            required
+          />
+        </div>
+        <div class="form-control">
+          <label for="place-purchased-input" class="label"
+            >Place Purchased</label
+          >
+          <input
+            type="text"
+            bind:value={formData.placePurchased}
+            class="input input-bordered"
+            required
+            id="place-purchased-input"
+          />
+        </div>
+        <div class="form-control">
+          <div class="flex justify-end">
+            <button type="submit" class="btn btn-primary">Add Whisky</button>
+          </div>
         </div>
       </div>
     </form>
@@ -192,9 +206,5 @@
   /* Optional: Additional styling for the floating button */
   .floating-button {
     @apply fixed bottom-4 right-4;
-  }
-
-  .floating-button.hidden {
-    display: none;
   }
 </style>
