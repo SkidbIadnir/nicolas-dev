@@ -3,12 +3,20 @@
     props: { whiskies: { name: string; age: number | null }[] };
   };
   export let title: string;
+
+  function navigateToWhisky(whiskyName: string) {
+    window.location.href = `/whisky/${whiskyName}`;
+  }
 </script>
 
 <h2 class="text-xl font-bold mb-4">{title}</h2>
 <ul>
   {#each data.props.whiskies as whisky}
-    <a href="/whisky/{whisky.name}" class="no-underline">
+    <a
+      href="#"
+      class="no-underline"
+      on:click={() => navigateToWhisky(whisky.name)}
+    >
       <li
         class="mb-2 p-2 bg-secondary text-secondary-content rounded shadow hover:bg-accent hover:text-accent-content transition-colors duration-300 ease-in-out"
       >
