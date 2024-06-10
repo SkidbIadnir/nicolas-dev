@@ -9,7 +9,9 @@ export const load = async ({ fetch, params }) => {
   const data = await res.json();
   return {
     props: {
-      whiskies: data.whiskies,
+      whiskiesBought: data.whiskiesBought,
+      whiskiesTested: data.whiskiesTested,
+      whiskiesWanted: data.whiskiesWanted,
       regions: data.regions,
       types: data.types,
     },

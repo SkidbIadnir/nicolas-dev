@@ -77,16 +77,46 @@
 
 <div class="flex flex-col md:flex-row">
   <aside class="w-full md:w-1/4 bg-base-200 p-4">
-    <h2 class="text-xl font-bold mb-4">Whiskies</h2>
+    <h2 class="text-xl font-bold mb-4">Whiskies Bought</h2>
     <ul>
-      {#each data.props.whiskies as whisky}
+      {#each data.props.whiskiesBought as whisky}
         <li class="mb-2 p-2 bg-secondary text-secondary-content rounded shadow">
-          <div class="flex justify-between">
+          <div class="flex justify-between font-semibold">
             <span class="truncate">{whisky.name}</span>
             {#if whisky.age !== null}
               <span>{whisky.age}</span>
             {:else}
-              <span>N/A</span>
+              <span>N/D</span>
+            {/if}
+          </div>
+        </li>
+      {/each}
+    </ul>
+    <h2 class="text-xl font-bold mb-4">Whiskies Tested</h2>
+    <ul>
+      {#each data.props.whiskiesTested as whisky}
+        <li class="mb-2 p-2 bg-secondary text-secondary-content rounded shadow">
+          <div class="flex justify-between font-semibold">
+            <span class="truncate">{whisky.name}</span>
+            {#if whisky.age !== null}
+              <span>{whisky.age}</span>
+            {:else}
+              <span>N/D</span>
+            {/if}
+          </div>
+        </li>
+      {/each}
+    </ul>
+    <h2 class="text-xl font-bold mb-4">Whiskies Wanted</h2>
+    <ul>
+      {#each data.props.whiskiesWanted as whisky}
+        <li class="mb-2 p-2 bg-secondary text-secondary-content rounded shadow">
+          <div class="flex justify-between font-semibold">
+            <span class="truncate">{whisky.name}</span>
+            {#if whisky.age !== null}
+              <span>{whisky.age}</span>
+            {:else}
+              <span>N/D</span>
             {/if}
           </div>
         </li>
@@ -130,40 +160,42 @@
           required
         />
       </div>
-      <div class="form-control">
-        <label for="age-input" class="label">Age</label>
-        <input
-          type="number"
-          bind:value={formData.age}
-          class="input input-bordered"
-          required
-        />
+      <div class="flex flex-row gap-10">
+        <div class="form-control">
+          <label for="age-input" class="label">Age</label>
+          <input
+            type="number"
+            bind:value={formData.age}
+            class="input input-bordered"
+            required
+          />
+        </div>
+        <div class="form-control">
+          <label for="abv-input" class="label">ABV %</label>
+          <input
+            type="number"
+            min="0"
+            max="100"
+            bind:value={formData.abv}
+            class="input input-bordered"
+            required
+          />
+        </div>
       </div>
-      <div class="form-control">
-        <label for="abv-input" class="label">ABV %</label>
-        <input
-          type="number"
-          min="0"
-          max="100"
-          bind:value={formData.abv}
-          class="input input-bordered"
-          required
-        />
-        <div class="form-control col-span-2">
-          <label for="type-input" class="label">Type</label>
-          <div class="grid grid-cols-2 gap-2">
-            {#each data.props.types as type}
-              <div class="form-control flex items-center flex-row">
-                <input
-                  type="checkbox"
-                  class="checkbox checkbox-primary"
-                  checked={formData.type.some((t) => t.name === type)}
-                  on:change={() => toggleType(type)}
-                />
-                <label class="label-text ml-2" for="type-input">{type}</label>
-              </div>
-            {/each}
-          </div>
+      <div class="form-control col-span-2">
+        <label for="type-input" class="label">Type</label>
+        <div class="grid grid-cols-2 gap-2">
+          {#each data.props.types as type}
+            <div class="form-control flex items-center flex-row">
+              <input
+                type="checkbox"
+                class="checkbox checkbox-primary"
+                checked={formData.type.some((t) => t.name === type)}
+                on:change={() => toggleType(type)}
+              />
+              <label class="label-text ml-2" for="type-input">{type}</label>
+            </div>
+          {/each}
         </div>
         <div class="form-control">
           <label for="price-input" class="label">Price</label>
@@ -186,7 +218,7 @@
             id="place-purchased-input"
           />
         </div>
-        <div class="form-control">
+        <div class="form-control pt-4">
           <div class="flex justify-end">
             <button type="submit" class="btn btn-primary">Add Whisky</button>
           </div>

@@ -1,7 +1,15 @@
 /** @type {import('./$types').RequestHandler} */ export async function GET({
   request,
 }) {
-  let whiskyList: [{ name: string; age: number }] = [{ name: "", age: 0 }];
+  let whiskyListBought: [{ name: string; age: number }] = [
+    { name: "", age: 0 },
+  ];
+  let whiskyListTested: [{ name: string; age: number }] = [
+    { name: "", age: 0 },
+  ];
+  let whiskyListWanred: [{ name: string; age: number }] = [
+    { name: "", age: 0 },
+  ];
   const regions: string[] = [];
   const types: string[] = [];
   try {
@@ -18,13 +26,34 @@
       }
     );
     const data = await res.json();
+
     data.results.forEach((whisky: any) => {
-      whiskyList.push({
-        name: whisky.properties.Name.title[0].text.content,
-        age: whisky.properties["Age (OF THE BOTTLE)"].number,
-      });
+      if (whisky.properties.Status.status.name === "Bought") {
+        whiskyListBought.push({
+          name: whisky.properties.Name.title[0].text.content,
+          age: whisky.properties["Age (OF THE BOTTLE)"].number,
+        });
+      }
+      if (whisky.properties.Status.status.name === "Tested") {
+        whiskyListTested.push({
+          name: whisky.properties.Name.title[0].text.content,
+          age: whisky.properties["Age (OF THE BOTTLE)"].number,
+        });
+      }
+      if (whisky.properties.Status.status.name === "Wanted") {
+        whiskyListWanred.push({
+          name: whisky.properties.Name.title[0].text.content,
+          age: whisky.properties["Age (OF THE BOTTLE)"].number,
+        });
+      }
+      // whiskyListBought.push({
+      //   name: whisky.properties.Name.title[0].text.content,
+      //   age: whisky.properties["Age (OF THE BOTTLE)"].number,
+      // });
     });
-    whiskyList.shift();
+    whiskyListBought.shift();
+    whiskyListTested.shift();
+    whiskyListWanred.shift();
   } catch (error) {
     console.error(error);
   }
@@ -55,7 +84,9 @@
   }
 
   return Response.json({
-    whiskies: whiskyList,
+    whiskiesBought: whiskyListBought,
+    whiskiesTested: whiskyListTested,
+    whiskiesWanted: whiskyListWanred,
     regions: regions,
     types: types,
   });
