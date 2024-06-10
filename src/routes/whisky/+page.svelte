@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
   import type { PageData } from "./$types";
+  import WhiskyList from "$lib/components/WhiskyList.svelte";
 
   export let data: PageData;
 
@@ -11,9 +12,11 @@
     age: 0,
     abv: 0,
     type: [] as { name: string }[],
+    status: "",
     price: 0,
     placePurchased: "",
   };
+  let isLoading = false;
 
   let isBrowser = typeof window !== "undefined";
 
@@ -50,7 +53,7 @@
   }
 
   async function handleSubmit() {
-    console.log("Form data: ", formData);
+    isLoading = true;
 
     const res = await fetch("/api/notion", {
       method: "POST",
@@ -62,7 +65,10 @@
     const data = await res.json();
     if (data.status === "ok") {
       location.reload();
+    } else {
+      alert("Failed to add whisky");
     }
+    isLoading = false;
   }
 
   function toggleType(type: string) {
@@ -77,51 +83,24 @@
 
 <div class="flex flex-col md:flex-row">
   <aside class="w-full md:w-1/4 bg-base-200 p-4">
-    <h2 class="text-xl font-bold mb-4">Whiskies Bought</h2>
-    <ul>
-      {#each data.props.whiskiesBought as whisky}
-        <li class="mb-2 p-2 bg-secondary text-secondary-content rounded shadow">
-          <div class="flex justify-between font-semibold">
-            <span class="truncate">{whisky.name}</span>
-            {#if whisky.age !== null}
-              <span>{whisky.age}</span>
-            {:else}
-              <span>N/D</span>
-            {/if}
-          </div>
-        </li>
-      {/each}
-    </ul>
-    <h2 class="text-xl font-bold mb-4">Whiskies Tested</h2>
-    <ul>
-      {#each data.props.whiskiesTested as whisky}
-        <li class="mb-2 p-2 bg-secondary text-secondary-content rounded shadow">
-          <div class="flex justify-between font-semibold">
-            <span class="truncate">{whisky.name}</span>
-            {#if whisky.age !== null}
-              <span>{whisky.age}</span>
-            {:else}
-              <span>N/D</span>
-            {/if}
-          </div>
-        </li>
-      {/each}
-    </ul>
-    <h2 class="text-xl font-bold mb-4">Whiskies Wanted</h2>
-    <ul>
-      {#each data.props.whiskiesWanted as whisky}
-        <li class="mb-2 p-2 bg-secondary text-secondary-content rounded shadow">
-          <div class="flex justify-between font-semibold">
-            <span class="truncate">{whisky.name}</span>
-            {#if whisky.age !== null}
-              <span>{whisky.age}</span>
-            {:else}
-              <span>N/D</span>
-            {/if}
-          </div>
-        </li>
-      {/each}
-    </ul>
+    <WhiskyList
+      data={{
+        props: { whiskies: data.props.whiskiesBought },
+      }}
+      title="Whiskies Bought"
+    />
+    <WhiskyList
+      data={{
+        props: { whiskies: data.props.whiskiesTested },
+      }}
+      title="Whiskies Tested"
+    />
+    <WhiskyList
+      data={{
+        props: { whiskies: data.props.whiskiesWanted },
+      }}
+      title="Whiskies Wanted"
+    />
   </aside>
 
   <main id="form" class="w-full md:w-3/4 p-4">
@@ -220,7 +199,9 @@
         </div>
         <div class="form-control pt-4">
           <div class="flex justify-end">
-            <button type="submit" class="btn btn-primary">Add Whisky</button>
+            <button type="submit" class="btn btn-primary" disabled={isLoading}>
+              {isLoading ? "Adding Whisky..." : "Add Whisky"}
+            </button>
           </div>
         </div>
       </div>
