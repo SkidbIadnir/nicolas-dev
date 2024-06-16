@@ -1,17 +1,36 @@
 /** @type {import('./$types').RequestHandler} */ export async function GET({
   request,
 }) {
-  let whiskyListBought: [{ name: string; age: number }] = [
-    { name: "", age: 0 },
-  ];
-  let whiskyListTested: [{ name: string; age: number }] = [
-    { name: "", age: 0 },
-  ];
-  let whiskyListWanred: [{ name: string; age: number }] = [
-    { name: "", age: 0 },
+  let whiskiesListAll: [
+    {
+      name: string;
+      abv: number;
+      price: number;
+      age: number;
+      location: string;
+      taste: string;
+      status: string;
+      region: string;
+      type: string;
+      image: string;
+    }
+  ] = [
+    {
+      name: "",
+      region: "",
+      type: "",
+      age: 0,
+      location: "",
+      taste: "",
+      abv: 0,
+      price: 0,
+      status: "",
+      image: "",
+    },
   ];
   const regions: string[] = [];
   const types: string[] = [];
+  const statuses: string[] = [];
   try {
     const res = await fetch(
       "https://api.notion.com/v1/databases/695d6c5cf0d14e8ca0e7533583def23b/query",
@@ -27,33 +46,34 @@
     );
     const data = await res.json();
 
+    let url = "";
+    let abv: number = 0;
     data.results.forEach((whisky: any) => {
-      if (whisky.properties.Status.status.name === "Bought") {
-        whiskyListBought.push({
-          name: whisky.properties.Name.title[0].text.content,
-          age: whisky.properties["Age (OF THE BOTTLE)"].number,
-        });
+      if (whisky.properties.Images.files.length > 0) {
+        url = whisky.properties.Images.files[0].file.url;
       }
-      if (whisky.properties.Status.status.name === "Tested") {
-        whiskyListTested.push({
-          name: whisky.properties.Name.title[0].text.content,
-          age: whisky.properties["Age (OF THE BOTTLE)"].number,
-        });
-      }
-      if (whisky.properties.Status.status.name === "Wanted") {
-        whiskyListWanred.push({
-          name: whisky.properties.Name.title[0].text.content,
-          age: whisky.properties["Age (OF THE BOTTLE)"].number,
-        });
-      }
+      abv = whisky.properties.ABV.number * 100; // convert to percentage\
+      abv = Math.floor(whisky.properties.ABV.number * 100); // truncate to the nearest integer
+
+      whiskiesListAll.push({
+        name: whisky.properties.Name.title[0].text.content,
+        age: whisky.properties["Age (OF THE BOTTLE)"].number,
+        abv: abv,
+        price: whisky.properties.Price.number,
+        location: whisky.properties.Location.rich_text[0].text.content,
+        taste: whisky.properties.Taste.rich_text[0].text.content,
+        status: whisky.properties.Status.status.name,
+        region: whisky.properties.Region.select.name,
+        type: whisky.properties.Type.multi_select,
+        image: url,
+      });
+
       // whiskyListBought.push({
       //   name: whisky.properties.Name.title[0].text.content,
       //   age: whisky.properties["Age (OF THE BOTTLE)"].number,
       // });
     });
-    whiskyListBought.shift();
-    whiskyListTested.shift();
-    whiskyListWanred.shift();
+    whiskiesListAll.shift();
   } catch (error) {
     console.error(error);
   }
@@ -79,16 +99,18 @@
     data.properties.Type.multi_select.options.forEach((type: any) => {
       types.push(type.name);
     });
+
+    data.properties.Status.status.options.forEach((status: any) => {
+      statuses.push(status.name);
+    });
   } catch (error) {
     console.error(error);
   }
 
   return Response.json({
-    whiskiesBought: whiskyListBought,
-    whiskiesTested: whiskyListTested,
-    whiskiesWanted: whiskyListWanred,
+    whiskiesListAll: whiskiesListAll,
     regions: regions,
     types: types,
+    statuses: statuses,
   });
 }
-

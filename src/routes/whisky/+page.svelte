@@ -1,41 +1,89 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
   import type { PageData } from "./$types";
-  import WhiskyList from "$lib/components/WhiskyList.svelte";
+  import { goto } from "$app/navigation";
+  import Modal from "$lib/components/ModalWhisky.svelte";
 
   export let data: PageData;
 
-  let formData = {
-    name: "",
-    region: "",
-    taste: "",
-    age: 0,
-    abv: 0,
-    type: [] as { name: string }[],
-    status: "",
-    price: 0,
-    placePurchased: "",
-  };
-  let isLoading = false;
-
   let isBrowser = typeof window !== "undefined";
+  let dialog: any;
+  let selectedWhisky: any = null;
 
   let handleScroll: () => void;
-  let scrollToForm: () => void;
+  let scrollToTop: () => void;
+
+  let filters = {
+    region: "",
+    type: [] as { name: string }[], // Update the type of the array
+    minAge: 0,
+    maxAge: 100,
+    minAbv: 0,
+    maxAbv: 100,
+    status: "",
+  };
+
+  const minAge = Math.min(...data.props.whiskiesListAll.map((w: any) => w.age));
+  const maxAge = Math.max(...data.props.whiskiesListAll.map((w: any) => w.age));
+  const minAbv = Math.min(...data.props.whiskiesListAll.map((w: any) => w.abv));
+  const maxAbv = Math.max(...data.props.whiskiesListAll.map((w: any) => w.abv));
+  filters.minAge = minAge;
+  filters.maxAge = maxAge;
+  filters.minAbv = minAbv;
+  filters.maxAbv = maxAbv;
+
+  function toggleType(type: string) {
+    const index = filters.type.findIndex((t) => t.name === type);
+    if (index === -1) {
+      filters.type = [...filters.type, { name: type }];
+    } else {
+      filters.type = filters.type.filter((t) => t.name !== type);
+    }
+  }
+
+  let filteredWhiskies = data.props.whiskiesListAll;
+
+  function applyFilters() {
+    filteredWhiskies = data.props.whiskiesListAll.filter((whisky: any) => {
+      const matchesRegion = filters.region
+        ? whisky.region === filters.region
+        : true;
+      const matchesType = filters.type.length
+        ? filters.type.some((filterType) =>
+            whisky.type.some((t: any) => t.name === filterType.name)
+          )
+        : true;
+      const matchesAge =
+        whisky.age >= filters.minAge && whisky.age <= filters.maxAge;
+      const matchesAbv =
+        whisky.abv >= filters.minAbv && whisky.abv <= filters.maxAbv;
+      const matchesStatus = filters.status
+        ? whisky.status === filters.status
+        : true;
+      return (
+        matchesRegion &&
+        matchesType &&
+        matchesAge &&
+        matchesAbv &&
+        matchesStatus
+      );
+    });
+  }
+
   if (isBrowser) {
     handleScroll = () => {
-      const formElement = document.getElementById("form");
       const buttonElement = document.querySelector(".floating-button");
-      if (formElement && buttonElement) {
-        const rect = formElement.getBoundingClientRect();
-        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-          buttonElement.classList.add("hidden");
-        } else {
+      if (buttonElement) {
+        if (window.scrollY > 200) {
           buttonElement.classList.remove("hidden");
+        } else {
+          buttonElement.classList.add("hidden");
         }
       }
     };
+
     onMount(() => {
+      dialog = document.getElementById("my_modal_3");
       window.addEventListener("scroll", handleScroll);
       handleScroll();
     });
@@ -44,122 +92,60 @@
       window.removeEventListener("scroll", handleScroll);
     });
 
-    scrollToForm = () => {
-      const formElement = document.getElementById("form");
-      if (formElement) {
-        formElement.scrollIntoView({ behavior: "smooth" });
-      }
+    scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     };
   }
 
-  async function handleSubmit() {
-    isLoading = true;
-
-    const res = await fetch("/api/notion", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-    const data = await res.json();
-    if (data.status === "ok") {
-      location.reload();
-    } else {
-      alert("Failed to add whisky");
-    }
-    isLoading = false;
+  function showWhiskyDetails(whisky: any) {
+    selectedWhisky = whisky;
   }
 
-  function toggleType(type: string) {
-    const index = formData.type.findIndex((t) => t.name === type);
-    if (index === -1) {
-      formData.type = [...formData.type, { name: type }];
-    } else {
-      formData.type = formData.type.filter((t) => t.name !== type);
-    }
+  function closeModal() {
+    selectedWhisky = null;
   }
 </script>
 
 <div class="flex flex-col md:flex-row">
+  <!-- Sidebar -->
   <aside class="w-full md:w-1/4 bg-base-200 p-4">
-    <WhiskyList
-      data={{
-        props: { whiskies: data.props.whiskiesBought },
-      }}
-      title="Whiskies Bought"
-    />
-    <WhiskyList
-      data={{
-        props: { whiskies: data.props.whiskiesTested },
-      }}
-      title="Whiskies Tested"
-    />
-    <WhiskyList
-      data={{
-        props: { whiskies: data.props.whiskiesWanted },
-      }}
-      title="Whiskies Wanted"
-    />
-  </aside>
-
-  <main id="form" class="w-full md:w-3/4 p-4">
-    <h1 class="text-2xl font-bold mb-4">Add a New Whisky</h1>
-    <form on:submit|preventDefault={handleSubmit} class="space-y-4">
+    <h2 class="text-xl font-bold">Filter Whiskies</h2>
+    <div class="mt-4 space-y-4">
+      <button
+        class="btn btn-secondary w-full"
+        on:click={() => {
+          filters = {
+            region: "",
+            type: [],
+            minAge: 0,
+            maxAge: 100,
+            minAbv: 0,
+            maxAbv: 100,
+            status: "",
+          };
+          applyFilters();
+        }}>Reset Filters</button
+      >
+      <button class="btn btn-primary w-full mt-2" on:click={applyFilters}
+        >Apply Filters</button
+      >
       <div class="form-control">
-        <label for="name-input" class="label">Name</label>
-        <input
-          type="text"
-          bind:value={formData.name}
-          class="input input-bordered"
-          required
-        />
+        <label for="whisky-number" class="label">Total whiskies</label>
+        <span class="badge">{filteredWhiskies.length}</span>
       </div>
+
       <div class="form-control">
         <label for="region-select" class="label">Region</label>
-
         <select
-          bind:value={formData.region}
+          id="region-select"
           class="select select-bordered"
-          required
+          bind:value={filters.region}
         >
-          <option value="" disabled>Select region</option>
+          <option value="">All regions</option>
           {#each data.props.regions as region}
             <option value={region}>{region}</option>
           {/each}
-          <!-- Add other regions as needed -->
         </select>
-      </div>
-      <div class="form-control">
-        <label for="taste-input" class="label">Taste</label>
-        <input
-          type="text"
-          bind:value={formData.taste}
-          class="input input-bordered"
-          required
-        />
-      </div>
-      <div class="flex flex-row gap-10">
-        <div class="form-control">
-          <label for="age-input" class="label">Age</label>
-          <input
-            type="number"
-            bind:value={formData.age}
-            class="input input-bordered"
-            required
-          />
-        </div>
-        <div class="form-control">
-          <label for="abv-input" class="label">ABV %</label>
-          <input
-            type="number"
-            min="0"
-            max="100"
-            bind:value={formData.abv}
-            class="input input-bordered"
-            required
-          />
-        </div>
       </div>
       <div class="form-control col-span-2">
         <label for="type-input" class="label">Type</label>
@@ -169,7 +155,6 @@
               <input
                 type="checkbox"
                 class="checkbox checkbox-primary"
-                checked={formData.type.some((t) => t.name === type)}
                 on:change={() => toggleType(type)}
               />
               <label class="label-text ml-2" for="type-input">{type}</label>
@@ -177,47 +162,119 @@
           {/each}
         </div>
         <div class="form-control">
-          <label for="price-input" class="label">Price</label>
+          <label for="age-range" class="label">Age Range</label>
           <input
-            type="number"
-            bind:value={formData.price}
-            class="input input-bordered"
-            required
+            id="age-range"
+            type="range"
+            class="range"
+            min={minAge}
+            max={maxAge}
+            bind:value={filters.minAge}
           />
-        </div>
-        <div class="form-control">
-          <label for="place-purchased-input" class="label"
-            >Place Purchased</label
-          >
           <input
-            type="text"
-            bind:value={formData.placePurchased}
-            class="input input-bordered"
-            required
-            id="place-purchased-input"
+            id="age-range"
+            type="range"
+            class="range"
+            min={minAge}
+            max={maxAge}
+            bind:value={filters.maxAge}
           />
-        </div>
-        <div class="form-control pt-4">
-          <div class="flex justify-end">
-            <button type="submit" class="btn btn-primary" disabled={isLoading}>
-              {isLoading ? "Adding Whisky..." : "Add Whisky"}
-            </button>
+          <div class="range-labels">
+            <span>{filters.minAge}</span>
+            <span>{filters.maxAge}</span>
           </div>
         </div>
+
+        <div class="form-control">
+          <label for="abv-range" class="label">ABV Range</label>
+          <input
+            id="abv-range"
+            type="range"
+            class="range"
+            min={minAbv}
+            max={maxAbv}
+            bind:value={filters.minAbv}
+          />
+          <input
+            id="abv-range"
+            type="range"
+            class="range"
+            min={minAbv}
+            max={maxAbv}
+            bind:value={filters.maxAbv}
+          />
+          <div class="range-labels">
+            <span>{filters.minAbv}</span>
+            <span>{filters.maxAbv}</span>
+          </div>
+        </div>
+        <div class="form-control">
+          <label for="status-select" class="label">Status</label>
+          <select
+            id="status-select"
+            class="select select-bordered"
+            bind:value={filters.status}
+          >
+            <option value="">All statuses</option>
+            {#each data.props.statuses as status}
+              <option value={status}>{status}</option>
+            {/each}
+          </select>
+        </div>
       </div>
-    </form>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="w-full md:w-3/4 p-4">
+    <div
+      class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+    >
+      {#each filteredWhiskies as whisky}
+        <div class="card bg-base-200 shadow-md">
+          <figure>
+            <img
+              src={whisky.image}
+              alt={whisky.name}
+              class="w-full h-48 object-cover"
+            />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title">{whisky.name}</h2>
+            <p><strong>Region:</strong> {whisky.region}</p>
+            <div class="card-actions justify-end">
+              <button
+                class="btn btn-primary"
+                on:click={() => showWhiskyDetails(whisky)}>see more</button
+              >
+            </div>
+          </div>
+        </div>
+      {/each}
+    </div>
   </main>
 </div>
-<button
-  on:click={scrollToForm}
-  class="floating-button btn btn-primary lg:hidden"
->
-  To the form
+
+<button on:click={scrollToTop} class="floating-button btn btn-primary hidden">
+  To the top
 </button>
 
+{#if selectedWhisky}
+  <Modal whisky={selectedWhisky} on:close={closeModal} />
+{/if}
+
 <style>
-  /* Optional: Additional styling for the floating button */
   .floating-button {
     @apply fixed bottom-4 right-4;
+  }
+  .range-labels {
+    display: flex;
+    justify-content: space-between;
+  }
+  .modal {
+    display: none;
+  }
+  .modal-open {
+    display: block;
   }
 </style>

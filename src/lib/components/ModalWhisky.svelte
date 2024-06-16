@@ -1,19 +1,18 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
-  import WhiskyList from "$lib/components/WhiskyList.svelte";
+  import { createEventDispatcher } from "svelte";
+  export let whisky: any;
+  const dispatch = createEventDispatcher();
 
-  export let data;
-  const whisky = data.props.whisky;
   const placeholderImage =
     "https://via.placeholder.com/400x300?text=No+Image+Available"; // Placeholder image URL
 
-  function goBack() {
-    goto("/whisky");
+  function closeModal() {
+    dispatch("close");
   }
 </script>
 
-<div class="flex flex-col md:flex-row">
-  <main class="w-full md:w-3/4 p-4">
+<div class="modal modal-open">
+  <main class="w-full md:w-2/3 lg:w-1/2 p-2 md:p-0">
     <div class="card bg-base-100 shadow-xl">
       <figure>
         <img
@@ -21,22 +20,15 @@
           alt={whisky.name}
           class="w-full h-64 object-cover"
         />
-
-        <button
-          on:click={goBack}
-          class="absolute top-4 right-4 btn btn-secondary"
-        >
-          Go Back
-        </button>
       </figure>
       <div class="card-body">
-        <h1 class="card-title text-3xl font-bold">{whisky.name}</h1>
+        <h1 class="card-title text-2xl md:text-3xl font-bold">{whisky.name}</h1>
         <p class="text-gray-600">{whisky.region}</p>
         <p class="mt-4">
           <span class="font-semibold">Age:</span>
           {whisky.age ? whisky.age : "N/A"} years
         </p>
-        <p><span class="font-semibold">ABV:</span> {whisky.abv * 100}%</p>
+        <p><span class="font-semibold">ABV:</span> {whisky.abv}%</p>
         <p><span class="font-semibold">Taste:</span> {whisky.taste}</p>
         <p><span class="font-semibold">Price:</span> ${whisky.price}</p>
         <p>
@@ -53,6 +45,21 @@
           </ul>
         </div>
       </div>
+      <div class="modal-action p-3">
+        <button class="btn btn-primary" on:click={closeModal}>Close</button>
+      </div>
     </div>
   </main>
 </div>
+
+<style>
+  .modal {
+    @apply fixed inset-0 flex items-center justify-center bg-black bg-opacity-50;
+  }
+  .card {
+    @apply w-full;
+  }
+  .modal-action {
+    @apply flex justify-end;
+  }
+</style>

@@ -9,12 +9,10 @@ export const load = async ({ fetch, params }) => {
   const data = await res.json();
   return {
     props: {
-      whiskiesBought: data.whiskiesBought,
-      whiskiesTested: data.whiskiesTested,
-      whiskiesWanted: data.whiskiesWanted,
+      whiskiesListAll: data.whiskiesListAll,
       regions: data.regions,
       types: data.types,
+      statuses: data.statuses,
     },
   };
 };
-
