@@ -43,9 +43,8 @@
             >{tranTexts["Project"][lang]}</a
           >
         </li>
-        {#if u_data?.username === "skid"}
-          <li><a href="/whisky" class="">Whisky</a></li>
-        {/if}
+        <li><a href="/whisky" class="">Whisky</a></li>
+        <ThemeChanger />
         <!-- <li><a href="/skid" class="">Nicolas's links</a></li> -->
       </ul>
     </div>
@@ -85,10 +84,8 @@
             >{tranTexts["myPage"][lang]}</a
           >
         </li>
-        {#if u_data?.username === "skid"}
-          <li><a href="/whisky" class="font-semibold">Whisky</a></li>
-        {/if}
       {/if}
+      <li><a href="/whisky" class="font-semibold">Whisky</a></li>
     </ul>
   </div>
   <div class="navbar-end gap-4">
