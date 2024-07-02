@@ -54,6 +54,7 @@
       }
       abv = whisky.properties.ABV.number * 100; // convert to percentage\
       abv = Math.floor(whisky.properties.ABV.number * 100); // truncate to the nearest integer
+      console.log(whisky.properties["SAT Tasting"]);
 
       whiskiesListAll.push({
         name: whisky.properties.Name.title[0].text.content,
@@ -61,7 +62,7 @@
         abv: abv,
         price: whisky.properties.Price.number,
         location: whisky.properties.Location.rich_text[0].text.content,
-        taste: whisky.properties.Taste.rich_text[0].text.content,
+        taste: whisky.properties["SAT Tasting"].relation[0].id,
         status: whisky.properties.Status.status.name,
         region: whisky.properties.Region.select.name,
         type: whisky.properties.Type.multi_select,

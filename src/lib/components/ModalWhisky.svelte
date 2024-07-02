@@ -29,7 +29,6 @@
           {whisky.age ? whisky.age : "N/A"} years
         </p>
         <p><span class="font-semibold">ABV:</span> {whisky.abv}%</p>
-        <p><span class="font-semibold">Taste:</span> {whisky.taste}</p>
         <p><span class="font-semibold">Price:</span> ${whisky.price}</p>
         <p>
           <span class="font-semibold">Location Purchased:</span>
@@ -46,6 +45,13 @@
         </div>
       </div>
       <div class="modal-action p-3">
+        <button
+          class="btn btn-primary"
+          on:click={() => {
+            window.location.href = `/whisky/${whisky.name}`;
+          }}>See SAT Details</button
+        >
+
         <button class="btn btn-primary" on:click={closeModal}>Close</button>
       </div>
     </div>

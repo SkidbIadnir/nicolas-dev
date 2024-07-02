@@ -34,4 +34,3 @@ export const GET: RequestHandler = async ({ params }) => {
     return json({ error: "Whisky not found" }, { status: 404 });
   }
 };
-

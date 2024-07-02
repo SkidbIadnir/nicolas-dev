@@ -35,28 +35,26 @@ export const load = async ({ fetch, params }) => {
     type: data.properties.Type.multi_select,
     age: age,
     abv: data.properties.ABV.number,
-    taste: data.properties.Taste.rich_text[0].text.content,
+    taste: data.properties["SAT Tasting"].relation[0].id,
     price: data.properties.Price.number,
-    location: data.properties["Location Purchased"].rich_text[0].text.content,
+    location: data.properties.Location.rich_text[0].text.content,
     status: data.properties.Status.status.name,
     image: url,
   };
 
-  const res2 = await fetch("/api/info", {
+  const res2 = await fetch(`/api/sat/${name}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   });
   const data2 = await res2.json();
+  console.log(data2);
 
   return {
     props: {
       whisky: whiskyData,
-      whiskiesBought: data2.whiskiesBought,
-      whiskiesTested: data2.whiskiesTested,
-      whiskiesWanted: data2.whiskiesWanted,
+      satData: data2,
     },
   };
 };
-
