@@ -3,7 +3,6 @@ import { json, type RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async ({ params }) => {
   const { name } = params;
-  const formatedName = "SAT: " + name;
   let pageContent = {
     title: "",
     nose: {
@@ -48,9 +47,13 @@ export const GET: RequestHandler = async ({ params }) => {
       },
       body: JSON.stringify({
         filter: {
-          property: "Name",
-          title: {
-            equals: formatedName,
+          property: "NameLink",
+          rollup: {
+            any: {
+              rich_text: {
+                equals: name,
+              },
+            },
           },
         },
       }),
@@ -59,39 +62,44 @@ export const GET: RequestHandler = async ({ params }) => {
 
   const data = await res.json();
   const satProperties = data.results[0].properties;
-  pageContent = {
-    title: satProperties.Name.title[0].text.content,
-    nose: {
-      clarity: satProperties.Clarity.select.name,
-      viscosity: satProperties.Viscosity.select.name,
-      color: satProperties.Color.select.name,
-      condition: satProperties["Nose Condition"].select.name,
-      intensity: satProperties["Nose Intensity"].select.name,
-      fruits: satProperties.Fruits.multi_select,
-      floral: satProperties.Floral.multi_select,
-      spices: satProperties.Spices.multi_select,
-      oak: satProperties.Oak.multi_select,
-      other_notes: satProperties["Other Nose"].rich_text[0].text.content,
-    },
-    palate: {
-      sweetness: satProperties.Sweetness.select.name,
-      bitterness: satProperties.Bitterness.select.name,
-      alcohol: satProperties.Alcohol.select.name,
-      body: satProperties.Body.select.name,
-      flavor_intensity: satProperties["Flavor Intensity"].select.name,
-      flavor_characteristics:
-        satProperties["Flavor Characteristics"].multi_select,
-    },
-    finish: {
-      length: satProperties["Finish Length"].select.name,
-      character: satProperties["Finish Character"].select.name,
-    },
-    conclusion: {
-      quality: satProperties["Quality Level"].select.name,
-      other_observations:
-        satProperties["Other Observations"].rich_text[0].text.content,
-    },
-  };
+  try {
+    pageContent = {
+      title: satProperties.Name.title[0].plain_text,
+      nose: {
+        clarity: satProperties.Clarity.select.name || "",
+        viscosity: satProperties.Viscosity.select.name || "",
+        color: satProperties.Color.select.name || "",
+        condition: satProperties["Nose Condition"].select.name || "",
+        intensity: satProperties["Nose Intensity"].select.name || "",
+        fruits: satProperties.Fruits.multi_select || [],
+        floral: satProperties.Floral.multi_select || [],
+        spices: satProperties.Spices.multi_select || [],
+        oak: satProperties.Oak.multi_select || [],
+        other_notes:
+          satProperties["Other Nose"].rich_text[0].text.content || "",
+      },
+      palate: {
+        sweetness: satProperties.Sweetness.select.name || "",
+        bitterness: satProperties.Bitterness.select.name || "",
+        alcohol: satProperties.Alcohol.select.name || "",
+        body: satProperties.Body.select.name || "",
+        flavor_intensity: satProperties["Flavor Intensity"].select.name || "",
+        flavor_characteristics:
+          satProperties["Flavor Characteristics"].multi_select || [],
+      },
+      finish: {
+        length: satProperties["Finish Length"].select.name || "",
+        character: satProperties["Finish Character"].select.name || "",
+      },
+      conclusion: {
+        quality: satProperties["Quality Level"].select.name || "",
+        other_observations:
+          satProperties["Other Observations"].rich_text[0].text.content || "",
+      },
+    };
+  } catch (error) {
+    console.log("Error: ", error);
+  }
 
   return json({ pageContent });
 };

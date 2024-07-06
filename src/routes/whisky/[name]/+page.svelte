@@ -4,7 +4,12 @@
   export let data;
   const whisky = data.props.whisky;
   const satData = data.props.satData.pageContent;
-  console.log(satData);
+  if (satData.nose.other_notes === "null") {
+    satData.nose.other_notes = "N/A";
+  }
+  if (satData.conclusion.other_observations === "null") {
+    satData.conclusion.other_observations = "N/A";
+  }
 
   const placeholderImage =
     "https://via.placeholder.com/400x300?text=No+Image+Available"; // Placeholder image URL

@@ -1,3 +1,5 @@
+import { page } from "$app/stores";
+
 /** @type {import('./$types').PageLoad} */
 export const load = async ({ fetch, params }) => {
   const name: string = params.name;
@@ -49,6 +51,7 @@ export const load = async ({ fetch, params }) => {
     },
   });
   const data2 = await res2.json();
+  console.log("IN PAGE.TS : ");
   console.log(data2);
 
   return {
